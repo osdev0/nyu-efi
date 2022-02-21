@@ -119,6 +119,3 @@ override CFLAGS += $(ARCH3264) -g -O2 -Wall -Wextra -Werror \
            -ffreestanding -fno-stack-protector -fno-stack-check
 
 override ARFLAGS := rDv
-override ASFLAGS += $(ARCH3264)
-override LDFLAGS += -nostdlib --warn-common --no-undefined --fatal-warnings \
-	   --build-id=sha1
