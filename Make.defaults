@@ -51,7 +51,6 @@ LIBDIR 	     := $(PREFIX)/lib
 INSTALL	     := install
 
 # Compilation tools
-HOSTCC       := $(prefix)gcc
 CC           := $(prefix)$(CROSS_COMPILE)gcc
 AS           := $(prefix)$(CROSS_COMPILE)as
 LD           := $(prefix)$(CROSS_COMPILE)ld
@@ -62,18 +61,7 @@ OBJCOPY      := $(prefix)$(CROSS_COMPILE)objcopy
 
 # Host/target identification
 OS           := $(shell uname -s)
-HOSTARCH     ?= $(shell $(HOSTCC) -dumpmachine | cut -f1 -d- | sed -e s,i[3456789]86,ia32, -e 's,armv[67].*,arm,' )
-ARCH         ?= $(shell $(HOSTCC) -dumpmachine | cut -f1 -d- | sed -e s,i[3456789]86,ia32, -e 's,armv[67].*,arm,' )
-
-# Get ARCH from the compiler if cross compiling
-ifneq ($(CROSS_COMPILE),)
-  override ARCH := $(shell $(CC) -dumpmachine | cut -f1 -d-| sed -e s,i[3456789]86,ia32, -e 's,armv[67].*,arm,' )
-endif
-
-# FreeBSD (and possibly others) reports amd64 instead of x86_64
-ifeq ($(ARCH),amd64)
-  override ARCH := x86_64
-endif
+ARCH         ?= x86_64
 
 #
 # Where to build the package
@@ -95,9 +83,7 @@ endif
 
 ifeq ($(ARCH),ia32)
   CFLAGS += -mno-80387 -mno-mmx -mno-sse
-  ifeq ($(HOSTARCH),x86_64)
-    ARCH3264 = -m32
-  endif
+  ARCH3264 = -m32
 endif
 
 ifeq ($(ARCH),x86_64)
@@ -119,9 +105,7 @@ ifeq ($(ARCH),x86_64)
   endif
 
   CFLAGS += -mno-red-zone
-  ifeq ($(HOSTARCH),ia32)
-    ARCH3264 = -m64
-  endif
+  ARCH3264 = -m64
 endif
 
 ifneq (,$(filter $(ARCH),ia32 x86_64))
