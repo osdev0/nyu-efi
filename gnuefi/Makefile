@@ -34,29 +34,25 @@
 #    SUCH DAMAGE.
 #
 
-SRCDIR = .
-
-VPATH = $(SRCDIR)
+override SRCDIR := .
+override TOPDIR := $(shell cd .. && pwd -P)
 
 include $(SRCDIR)/../Make.defaults
 
-TOPDIR = $(SRCDIR)/..
-
-CDIR=$(TOPDIR)/..
-FILES	= reloc_$(ARCH)  
-
-OBJS	= $(FILES:%=%.o)
+override FILES := reloc_$(ARCH)
+override OBJS := $(FILES:%=%.o)
 
 # on aarch64, avoid jump tables before all relocations have been processed
-reloc_aarch64.o: CFLAGS += -fno-jump-tables
+ifeq ($(ARCH),aarch64)
+  override CFLAGS += -fno-jump-tables
+endif
 
-TARGETS	= crt0-efi-$(ARCH).o libgnuefi.a
+override TARGETS := crt0-efi-$(ARCH).o libgnuefi.a
 
-all:	$(TARGETS)
+all: $(TARGETS)
 
 libgnuefi.a: $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
-
 
 clean:
 	rm -f $(TARGETS) *~ *.o $(OBJS)
