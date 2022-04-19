@@ -1,76 +1,68 @@
-/* Same as elf_x86_64_fbsd_efi.lds, except for OUTPUT_FORMAT below - KEEP IN SYNC */
-OUTPUT_FORMAT("elf64-x86-64", "elf64-x86-64", "elf64-x86-64")
+OUTPUT_FORMAT(elf64-x86-64)
 OUTPUT_ARCH(i386:x86-64)
 ENTRY(_start)
+
+PHDRS
+{
+    null    PT_NULL    FLAGS(0) ;
+    segm    PT_LOAD    FLAGS(7) ;
+    dynamic PT_DYNAMIC FLAGS(7) ;
+}
+
 SECTIONS
 {
   . = 0;
-  ImageBase = .;
-  /* .hash and/or .gnu.hash MUST come first! */
-  .hash : { *(.hash) }
-  .gnu.hash : { *(.gnu.hash) }
-  . = ALIGN(4096);
-  .eh_frame : 
-  { 
-    *(.eh_frame)
-  }
-  . = ALIGN(4096);
-  .text :
-  {
-   _text = .;
-   *(.text)
-   *(.text.*)
-   *(.gnu.linkonce.t.*)
-   . = ALIGN(16);
-  }
-  _etext = .;
-  _text_size = . - _text;
-  . = ALIGN(4096);
-  .reloc :
-  {
-   *(.reloc)
-  }
-  . = ALIGN(4096);
-  .data :
-  {
-   _data = .;
-   *(.rodata*)
-   *(.got.plt)
-   *(.got)
-   *(.data*)
-   *(.sdata)
-   /* the EFI loader doesn't seem to like a .bss section, so we stick
-      it all into .data: */
-   *(.sbss)
-   *(.scommon)
-   *(.dynbss)
-   *(.bss)
-   *(COMMON)
-   *(.rel.local)
-  }
-  .note.gnu.build-id : { *(.note.gnu.build-id) }
+  __image_base = .;
 
-  _edata = .;
-  _data_size = . - _etext;
-  . = ALIGN(4096);
-  .dynamic  : { *(.dynamic) }
-  . = ALIGN(4096);
-  .rela :
-  {
-    *(.rela.data*)
-    *(.rela.got)
-    *(.rela.stab)
+  .sect : {
+      *(.pe_header)
+
+      . = ALIGN(0x1000);
+
+      __text_start = .;
+      *(.text .text.*)
+      . = ALIGN(0x1000);
+      __text_end = .;
+      __text_size = __text_end - __text_start;
+
+      __reloc_start = .;
+      *(.reloc)
+      . = ALIGN(0x1000);
+      __reloc_end = .;
+      __reloc_size = __reloc_end - __reloc_start;
+
+      __data_start = .;
+      *(.data .data.*)
+      *(.rodata .rodata.*)
+      *(COMMON)
+      *(.bss .bss.*)
+      . = ALIGN(0x1000);
+      __data_size = __data_end - __data_start;
+  } :segm
+
+  .dynamic : {
+      *(.dynamic)
+      . = ALIGN(0x1000);
+
+      __data_end = .;
+
+      __image_end = .;
+      __image_size = __image_end - __image_base;
+  } :segm :dynamic
+
+  .symtab : {
+      *(.symtab)
+  } :null
+
+  .strtab : {
+      *(.strtab)
+  } :null
+
+  .shstrtab : {
+      *(.shstrtab)
+  } :null
+
+  /DISCARD/ : {
+      *(*)
   }
-  . = ALIGN(4096);
-  .dynsym   : { *(.dynsym) }
-  . = ALIGN(4096);
-  .dynstr   : { *(.dynstr) }
-  . = ALIGN(4096);
-  .ignored.reloc :
-  {
-    *(.rela.reloc)
-    *(.eh_frame)
-    *(.note.GNU-stack)
-  }
-  .comment 0 : { *(.comment) }
 }
