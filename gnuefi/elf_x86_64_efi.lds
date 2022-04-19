@@ -11,64 +11,122 @@ PHDRS
 
 SECTIONS
 {
-  . = 0;
-  __image_base = .;
+    . = 0;
+    __image_base = .;
+    __image_size = __image_end - __image_base;
 
-  .sect : {
-      *(.pe_header)
+    .sect : {
+        *(.pe_header)
 
-      . = ALIGN(0x1000);
+        . = ALIGN(0x1000);
 
-      __text_start = .;
-      *(.text .text.*)
-      . = ALIGN(0x1000);
-      __text_end = .;
-      __text_size = __text_end - __text_start;
+        __text_start = .;
+        __text_size = __text_end - __text_start;
+        *(.text .text.*)
+        . = ALIGN(0x1000);
+        __text_end = .;
 
-      __reloc_start = .;
-      *(.reloc)
-      . = ALIGN(0x1000);
-      __reloc_end = .;
-      __reloc_size = __reloc_end - __reloc_start;
+        __reloc_start = .;
+        __reloc_size = __reloc_end - __reloc_start;
+        *(.reloc)
+        . = ALIGN(0x1000);
+        __reloc_end = .;
 
-      __sbat_start = .;
-      *(.sbat)
-      . = ALIGN(0x1000);
-      __sbat_end = .;
-      __sbat_size = __sbat_end - __sbat_start;
+        __sbat_start = .;
+        __sbat_size = __sbat_end - __sbat_start;
+        *(.sbat)
+        . = ALIGN(0x1000);
+        __sbat_end = .;
 
-      __data_start = .;
-      *(.data .data.*)
-      *(.rodata .rodata.*)
-      *(COMMON)
-      *(.bss .bss.*)
-      . = ALIGN(0x1000);
-      __data_size = __data_end - __data_start;
-  } :segm
+        __data_start = .;
+        __data_size = __data_end - __data_start;
+        *(.rodata .rodata.*)
+        *(.data .data.*)
+        *(.bss .bss.*)
+        *(COMMON)
+        . = ALIGN(0x1000);
+    } :segm
 
-  .dynamic : {
-      *(.dynamic)
-      . = ALIGN(0x1000);
+    .rela : {
+        *(.rela .rela.*)
+        . = ALIGN(0x1000);
+    } :segm
 
-      __data_end = .;
+    .got : {
+        *(.got .got.*)
+        . = ALIGN(0x1000);
+    } :segm
 
-      __image_end = .;
-      __image_size = __image_end - __image_base;
-  } :segm :dynamic
+    .dynamic : {
+        __dynamic = .;
+        *(.dynamic)
+        . = ALIGN(0x1000);
+    } :segm :dynamic
 
-  .symtab : {
-      *(.symtab)
-  } :null
+    __data_end = .;
+    __image_end = .;
 
-  .strtab : {
-      *(.strtab)
-  } :null
+    .symtab 0 : {
+        *(.symtab)
+    } :null
 
-  .shstrtab : {
-      *(.shstrtab)
-  } :null
+    .strtab 0 : {
+        *(.strtab)
+    } :null
 
-  /DISCARD/ : {
-      *(*)
-  }
+    .shstrtab 0 : {
+        *(.shstrtab)
+    } :null
+
+    .debug_aranges 0 : {
+        *(.debug_aranges)
+    } :null
+
+    .debug_pubnames 0 : {
+        *(.debug_pubnames)
+    } :null
+
+    .debug_info 0 : {
+        *(.debug_info)
+    } :null
+
+    .debug_abbrev 0 : {
+        *(.debug_abbrev)
+    } :null
+
+    .debug_line 0 : {
+        *(.debug_line)
+    } :null
+
+    .debug_loclists 0 : {
+        *(.debug_loclists)
+    } :null
+
+    .debug_rnglists 0 : {
+        *(.debug_rnglists)
+    } :null
+
+    .debug_frame 0 : {
+        *(.debug_frame)
+    } :null
+
+    .debug_loc 0 : {
+        *(.debug_loc)
+    } :null
+
+    .debug_ranges 0 : {
+        *(.debug_ranges)
+    } :null
+
+    .debug_str 0 : {
+        *(.debug_str)
+    } :null
+
+    .debug_line_str 0 : {
+        *(.debug_line_str)
+    } :null
+
+    /DISCARD/ : {
+        *(*)
+    }
 }

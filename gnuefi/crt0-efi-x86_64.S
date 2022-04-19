@@ -144,9 +144,9 @@
     pushq %rdx
 
     lea __image_base(%rip), %rdi
-    lea _DYNAMIC(%rip), %rsi
+    lea __dynamic(%rip), %rsi
 
-    call _relocate
+    call __relocate
 
     popq %rsi
     popq %rdi
