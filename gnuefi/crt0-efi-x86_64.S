@@ -52,7 +52,7 @@
   pe_header:
     .long 0x00004550 // magic
     .word 0x8664     // machine
-    .word 0x0003     // section #
+    .word 0x0004     // section #
     .long 0          // timestamp
     .long 0          // symbol table ptr
     .long 0          // symbol #
@@ -113,6 +113,17 @@
     .word 0              // relocs count
     .word 0              // line nums count
     .long 0x40000042     // characteristics
+
+    .ascii ".sbat\0\0\0" // name
+    .long __sbat_size    // virtual size
+    .long __sbat_start   // rva
+    .long __sbat_size    // file size
+    .long __sbat_start   // file location
+    .long 0              // relocs
+    .long 0              // line nums
+    .word 0              // relocs count
+    .word 0              // line nums count
+    .long 0xc0000040     // characteristics
 
     .ascii ".data\0\0\0" // name
     .long __data_size    // virtual size

@@ -31,6 +31,12 @@ SECTIONS
       __reloc_end = .;
       __reloc_size = __reloc_end - __reloc_start;
 
+      __sbat_start = .;
+      *(.sbat)
+      . = ALIGN(0x1000);
+      __sbat_end = .;
+      __sbat_size = __sbat_end - __sbat_start;
+
       __data_start = .;
       *(.data .data.*)
       *(.rodata .rodata.*)
