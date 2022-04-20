@@ -151,9 +151,13 @@
     popq %rsi
     popq %rdi
 
-    call efi_main
-    addq $8, %rsp
+    test %rax, %rax
+    jnz .exit
 
+    call efi_main
+
+  .exit:
+    addq $8, %rsp
     ret
 
 // hand-craft a dummy .reloc section so EFI knows it's a relocatable executable:
