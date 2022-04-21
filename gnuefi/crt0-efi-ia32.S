@@ -111,7 +111,7 @@
     .long 0              // line nums
     .word 0              // relocs count
     .word 0              // line nums count
-    .long 0x40000042     // characteristics
+    .long 0x42000040     // characteristics
 
     .ascii ".sbat\0\0\0" // name
     .long __sbat_size    // virtual size
@@ -122,7 +122,7 @@
     .long 0              // line nums
     .word 0              // relocs count
     .word 0              // line nums count
-    .long 0xc0000040     // characteristics
+    .long 0x40000000     // characteristics
 
     .ascii ".data\0\0\0" // name
     .long __data_size    // virtual size
