@@ -67,7 +67,7 @@ extra_header_fields:
 	// Everything before the kernel image is considered part of the header
 	.long	_start - ImageBase		// SizeOfHeaders
 	.long	0				// CheckSum
-	.short	EFI_SUBSYSTEM			// Subsystem
+	.short	10       			// Subsystem
 	.short	0				// DllCharacteristics
 	.quad	0				// SizeOfStackReserve
 	.quad	0				// SizeOfStackCommit

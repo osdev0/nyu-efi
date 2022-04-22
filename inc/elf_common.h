@@ -676,6 +676,9 @@ typedef struct {
 #define	R_ARM_RPC24		254
 #define	R_ARM_RBASE		255
 
+#define R_AARCH64_NONE          0    /* no relocation */
+#define R_AARCH64_RELATIVE      1027
+
 /*	Name			Value	   Field	Calculation */
 #define	R_IA_64_NONE		0	/* None */
 #define	R_IA_64_IMM14		0x21	/* immediate14	S + A */
