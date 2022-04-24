@@ -1,7 +1,8 @@
 #
-#  Copyright (C) 1999-2001 Hewlett-Packard Co.
+#  Copyright (c) 1999-2007 Hewlett-Packard Development Company, L.P.
 #	Contributed by David Mosberger <davidm@hpl.hp.com>
 #	Contributed by Stephane Eranian <eranian@hpl.hp.com>
+#  Copyright (C) 2022 Mintsuki
 #
 #    All rights reserved.
 #
@@ -34,18 +35,62 @@
 #    SUCH DAMAGE.
 #
 
-override SRCDIR := .
-override TOPDIR := $(shell cd .. && pwd -P)
+define DEFAULT_VAR =
+	ifeq ($(origin $1), default)
+		override $(1) := $(2)
+	endif
+	ifeq ($(origin $1), undefined)
+		override $(1) := $(2)
+	endif
+endef
 
-include $(SRCDIR)/../Make.defaults
+$(eval $(call DEFAULT_VAR,CC,gcc))
+$(eval $(call DEFAULT_VAR,AR,ar))
+
+# Target identification
+ARCH ?= x86_64
+
+# Arch-specific compilation flags
+
+ifeq ($(ARCH),ia64)
+	override CFLAGS += -mfixed-range=f32-f127
+endif
+
+ifeq ($(ARCH),ia32)
+	override CFLAGS += -mno-80387 -mno-mmx -mno-sse -m32
+endif
+
+ifeq ($(ARCH),x86_64)
+	override CFLAGS += -mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone \
+	                   -mabi=sysv -m64
+	override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
+endif
+
+ifeq ($(ARCH),mips64el)
+	override CFLAGS += -march=mips64r2 -mabi=64
+endif
+
+ifeq ($(ARCH),arm)
+	override CFLAGS += -marm
+endif
+
+ifeq ($(ARCH),aarch64)
+	override CFLAGS += -fno-jump-tables
+endif
+
+# Generic compilation flags
+
+override INCDIR += -I../inc -I../inc/$(ARCH) -I../inc/protocol
+
+override CFLAGS += -g -O2 -Wall -Wextra -Werror \
+                   -std=gnu11 -Wno-error=pragmas -fpie -fno-lto \
+                   -fshort-wchar -fno-strict-aliasing \
+                   -ffreestanding -fno-stack-protector -fno-stack-check
+
+override ARFLAGS := rDv
 
 override FILES := reloc_$(ARCH)
 override OBJS := $(FILES:%=%.o)
-
-# on aarch64, avoid jump tables before all relocations have been processed
-ifeq ($(ARCH),aarch64)
-  override CFLAGS += -fno-jump-tables
-endif
 
 override TARGETS := crt0-efi-$(ARCH).o libgnuefi.a
 
@@ -54,20 +99,11 @@ all: $(TARGETS)
 libgnuefi.a: $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
+%.o: %.c
+	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+%.o: %.S
+	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(TARGETS) *~ *.o $(OBJS)
-
-install:
-	mkdir -p $(INSTALLROOT)$(LIBDIR)
-	$(INSTALL) -m 644 $(TARGETS) $(INSTALLROOT)$(LIBDIR)
-ifneq (,$(findstring FreeBSD,$(OS)))
- ifeq ($(ARCH),x86_64)
-	$(INSTALL) -m 644 $(SRCDIR)/elf_$(ARCH)_fbsd_efi.lds $(INSTALLROOT)$(LIBDIR)
- else
-	$(INSTALL) -m 644 $(SRCDIR)/elf_$(ARCH)_efi.lds $(INSTALLROOT)$(LIBDIR)
- endif
-else
-	$(INSTALL) -m 644 $(SRCDIR)/elf_$(ARCH)_efi.lds $(INSTALLROOT)$(LIBDIR)
-endif
-
-include $(SRCDIR)/../Make.rules
+	rm -f $(TARGETS) $(OBJS)

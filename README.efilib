@@ -1,5 +1,5 @@
 
-The files in the "lib" and "inc" subdirectories are using the EFI Application 
+The files in the "inc" subdirectory are using the EFI Application
 Toolkit distributed by Intel at http://developer.intel.com/technology/efi
 
 This code is covered by the following agreement:
