@@ -107,7 +107,7 @@
     .long 0, 0
 
     // base relocation table
-    .long __reloc_start, __reloc_sizev
+    .long reloc, 12
 
     // debug
     .long 0, 0
@@ -142,7 +142,7 @@
 
   sect_table:
     .ascii ".text\0\0\0" // name
-    .long __text_sizev   // virtual size
+    .long __text_size    // virtual size
     .long __text_start   // rva
     .long __text_size    // file size
     .long __text_start   // file location
@@ -151,17 +151,6 @@
     .word 0              // relocs count
     .word 0              // line nums count
     .long 0x60000020     // characteristics
-
-    .ascii ".reloc\0\0"  // name
-    .long __reloc_sizev  // virtual size
-    .long __reloc_start  // rva
-    .long __reloc_size   // file size
-    .long __reloc_start  // file location
-    .long 0              // relocs
-    .long 0              // line nums
-    .word 0              // relocs count
-    .word 0              // line nums count
-    .long 0x42000040     // characteristics
 
     .ascii ".sbat\0\0\0" // name
     .long __sbat_sizev   // virtual size
@@ -173,6 +162,17 @@
     .word 0              // relocs count
     .word 0              // line nums count
     .long 0x40000000     // characteristics
+
+    .ascii ".reloc\0\0"  // name
+    .long 12             // virtual size
+    .long reloc          // rva
+    .long 0x1000         // file size
+    .long reloc          // file location
+    .long 0              // relocs
+    .long 0              // line nums
+    .word 0              // relocs count
+    .word 0              // line nums count
+    .long 0x42000040     // characteristics
 
     .ascii ".data\0\0\0" // name
     .long __data_size    // virtual size
@@ -199,7 +199,7 @@
 	movl %eax,%ebx
 
 	addl $__image_base-0b,%eax		# %eax = ldbase
-	addl $__dynamic-0b,%ebx		# %ebx = _DYNAMIC
+	addl $_DYNAMIC-0b,%ebx		# %ebx = _DYNAMIC
 
 	pushl %ebx			# pass _DYNAMIC as second argument
 	pushl %eax			# pass ldbase as first argument
@@ -218,11 +218,11 @@
 // hand-craft a dummy .reloc section so EFI knows it's a relocatable executable:
 
 .section .data
-  dummy:
-    .long 0
+  .align 0x1000
+    dummy: .long 0
 
-.section .reloc, "a"
-  label1:
-    .long dummy - label1 // Page RVA
-    .long 12             // Block Size (2*4+2*2), must be aligned by 32 Bits
-    .long 0              // reloc for dummy
+.section .data.reloc
+    reloc:
+      .long dummy - reloc // Page RVA
+      .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
+      .long 0             // reloc for dummy
