@@ -1,12 +1,13 @@
-reduced-gnu-efi
-===============
+limine-efi
+==========
 
-reduced-gnu-efi is a fork of GNU-EFI that strips out all code save for
-the relocation assembly stubs and the EFI header files.
+limine-efi is a fork of GNU-EFI that strips out all code save for
+the relocation stubs and the EFI header files.
 
 Additionally, it ships, in the "inc" directory, the ELF headers necessary
-for the relocation code to build, along with fixes to the Makefile that
-caused issues when using Clang.
+for the relocation code to build - along with fixes to the Makefile that
+caused issues when using Clang, and a rework of the x86(_64) relocation
+code.
 
 For an example on how to use this, see:
-https://github.com/limine-bootloader/reduced-gnu-efi-hello
+https://github.com/limine-bootloader/limine-efi-hello
