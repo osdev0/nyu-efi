@@ -45,7 +45,6 @@ define DEFAULT_VAR =
 endef
 
 $(eval $(call DEFAULT_VAR,CC,gcc))
-$(eval $(call DEFAULT_VAR,AR,ar))
 
 # Target identification
 ARCH ?= x86_64
@@ -87,17 +86,9 @@ override CFLAGS += -g -O2 -Wall -Wextra -Werror \
                    -fshort-wchar -fno-strict-aliasing \
                    -ffreestanding -fno-stack-protector -fno-stack-check
 
-override ARFLAGS := rDv
+override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
 
-override FILES := reloc_$(ARCH)
-override OBJS := $(FILES:%=%.o)
-
-override TARGETS := crt0-efi-$(ARCH).o libgnuefi.a
-
-all: $(TARGETS)
-
-libgnuefi.a: $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+all: $(OBJS)
 
 %.o: %.c
 	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -106,4 +97,4 @@ libgnuefi.a: $(OBJS)
 	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(TARGETS) $(OBJS)
+	rm -f $(OBJS)
