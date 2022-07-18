@@ -74,7 +74,6 @@ SECTIONS
     __image_end = __data_end;
 
     /DISCARD/ : {
-        *.a:*(*)
-        *.o(*)
+        *(.note .note.*)
     }
 }
