@@ -1,63 +1,91 @@
-OUTPUT_FORMAT("elf64-littleaarch64", "elf64-littleaarch64", "elf64-littleaarch64")
+OUTPUT_FORMAT(elf64-littleaarch64)
 OUTPUT_ARCH(aarch64)
 ENTRY(_start)
+
+PHDRS
+{
+    text    PT_LOAD    FLAGS((1 << 0) | (1 << 2)) ;
+    data    PT_LOAD    FLAGS((1 << 1) | (1 << 2)) ;
+    dynamic PT_DYNAMIC FLAGS((1 << 1) | (1 << 2)) ;
+}
+
 SECTIONS
 {
-  .text 0x0 : {
-    _text = .;
-    *(.text.head)
-    *(.text)
-    *(.text.*)
-    *(.gnu.linkonce.t.*)
-    *(.srodata)
-    *(.rodata*)
-    . = ALIGN(16);
-  }
-  _etext = .;
-  _text_size = . - _text;
-  .dynamic  : { *(.dynamic) }
-  .data : ALIGN(4096)
-  {
-   _data = .;
-   *(.sdata)
-   *(.data)
-   *(.data1)
-   *(.data.*)
-   *(.got.plt)
-   *(.got)
+    . = 0;
+    __image_base = .;
+    __image_size = __image_end - __image_base;
 
-   /* the EFI loader doesn't seem to like a .bss section, so we stick
-      it all into .data: */
-   . = ALIGN(16);
-   _bss = .;
-   *(.sbss)
-   *(.scommon)
-   *(.dynbss)
-   *(.bss)
-   *(COMMON)
-   . = ALIGN(16);
-   _bss_end = .;
-  }
+    .text : {
+        *(.pe_header)
+        . = ALIGN(0x1000);
 
-  .rela.dyn : { *(.rela.dyn) }
-  .rela.plt : { *(.rela.plt) }
-  .rela.got : { *(.rela.got) }
-  .rela.data : { *(.rela.data) *(.rela.data*) }
-  . = ALIGN(512);
-  _edata = .;
-  _data_size = . - _data;
+        *(.text .text.*)
+        . = ALIGN(0x1000);
+    } :text
 
-  . = ALIGN(4096);
-  .dynsym   : { *(.dynsym) }
-  . = ALIGN(4096);
-  .dynstr   : { *(.dynstr) }
-  . = ALIGN(4096);
-  .note.gnu.build-id : { *(.note.gnu.build-id) }
-  /DISCARD/ :
-  {
-    *(.rel.reloc)
-    *(.eh_frame)
-    *(.note.GNU-stack)
-  }
-  .comment 0 : { *(.comment) }
+    __text_start = __image_base + 0x1000;
+    __text_size = SIZEOF(.text) - 0x1000;
+    __text_end = __text_start + __text_size;
+
+    .data.sbat : {
+        *(.data.sbat)
+        . = ALIGN(0x1000);
+    } :data
+
+    PROVIDE(__sbat_sizev = 1);
+
+    __sbat_start = __text_end;
+    __sbat_size = SIZEOF(.data.sbat);
+    __sbat_end = __sbat_start + __sbat_size;
+
+    .data.reloc : {
+        *(.data.reloc)
+        . = ALIGN(0x1000);
+    } :data
+
+    __reloc_start = __sbat_end;
+    __reloc_size = SIZEOF(.data.reloc);
+    __reloc_end = __reloc_start + __reloc_size;
+
+    .data : {
+        *(.rodata .rodata.*)
+
+#ifdef LINKER_NOMAP
+   full_map = .;
+#else
+   *(.full_map)
+#endif
+
+   *(.no_unwind)
+
+   data_begin = .;
+        *(.data .data.*)
+        *(.bss .bss.*)
+        *(COMMON)
+   data_end = .;
+    } :data
+
+    .rela : {
+        *(.rela .rela.*)
+    } :data
+
+    .got : {
+        *(.got .got.*)
+    } :data
+
+    .dynamic : {
+        *(.dynamic)
+        . = ALIGN(0x1000);
+    } :data :dynamic
+
+    __data_start = __reloc_end;
+    __data_size = SIZEOF(.data) + SIZEOF(.rela) + SIZEOF(.got) + SIZEOF(.dynamic);
+    __data_end = __data_start + __data_size;
+
+    __image_end = __data_end;
+
+    /DISCARD/ : {
+        *(.eh_frame)
+        *(.note .note.*)
+    }
 }

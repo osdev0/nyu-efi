@@ -87,7 +87,7 @@
     .long 0            // heap reserve size
     .long 0            // heap commit size
     .long 0            // loader flags
-    .long 16           // rvas and size count
+    .long 6            // rvas and size count
   opt_header_end:
 
   data_dirs:
@@ -108,36 +108,6 @@
 
     // base relocation table
     .long reloc, 12
-
-    // debug
-    .long 0, 0
-
-    // architecture
-    .long 0, 0
-
-    // global ptr
-    .long 0, 0
-
-    // TLS table
-    .long 0, 0
-
-    // load config
-    .long 0, 0
-
-    // bound import
-    .long 0, 0
-
-    // IAT
-    .long 0, 0
-
-    // delay import descriptor
-    .long 0, 0
-
-    // CLR runtime
-    .long 0, 0
-
-    // reserved
-    .long 0, 0
   data_dirs_end:
 
   sect_table:
