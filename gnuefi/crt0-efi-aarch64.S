@@ -32,16 +32,16 @@
 
   pe_header:
     .long 0x00004550 // magic
-    .short 0xaa64     // machine
-    .short 0x0004     // section #
+    .short 0xaa64    // machine
+    .short 0x0004    // section #
     .long 0          // timestamp
     .long 0          // symbol table ptr
     .long 0          // symbol #
     .short data_dirs_end - opt_header // opt header size
-    .short 0x0206     // characteristics
+    .short 0x0206    // characteristics
 
   opt_header:
-    .short 0x020b       // magic
+    .short 0x020b      // magic
     .byte 0x02         // maj linker ver
     .byte 0x26         // min linker ver
     .long __text_size  // code size
@@ -52,18 +52,18 @@
     .quad __image_base // image base
     .long 0x1000       // section alignment
     .long 0x1000       // file alignment
-    .short 0            // OS maj
-    .short 0            // OS min
-    .short 0            // image maj
-    .short 0            // image min
-    .short 0            // subsystem maj
-    .short 0            // subsystem min
+    .short 0           // OS maj
+    .short 0           // OS min
+    .short 0           // image maj
+    .short 0           // image min
+    .short 0           // subsystem maj
+    .short 0           // subsystem min
     .long 0            // win32 ver
     .long __image_size // image size
     .long __text_start // headers size
     .long 0            // checksum
-    .short 0x0a         // subsystem
-    .short 0            // dll characteristics
+    .short 0x0a        // subsystem
+    .short 0           // dll characteristics
     .quad 0            // stack reserve size
     .quad 0            // stack commit size
     .quad 0            // heap reserve size
@@ -100,8 +100,8 @@
     .long __text_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .short 0              // relocs count
-    .short 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x60000020     // characteristics
 
     .ascii ".sbat\0\0\0" // name
@@ -111,8 +111,8 @@
     .long __sbat_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .short 0              // relocs count
-    .short 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x40000000     // characteristics
 
     .ascii ".reloc\0\0"  // name
@@ -122,8 +122,8 @@
     .long reloc          // file location
     .long 0              // relocs
     .long 0              // line nums
-    .short 0              // relocs count
-    .short 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x42000040     // characteristics
 
     .ascii ".data\0\0\0" // name
@@ -133,8 +133,8 @@
     .long __data_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .short 0              // relocs count
-    .short 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0xc0000040     // characteristics
 
 .section .text

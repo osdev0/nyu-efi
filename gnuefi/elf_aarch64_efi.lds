@@ -49,20 +49,9 @@ SECTIONS
 
     .data : {
         *(.rodata .rodata.*)
-
-#ifdef LINKER_NOMAP
-   full_map = .;
-#else
-   *(.full_map)
-#endif
-
-   *(.no_unwind)
-
-   data_begin = .;
         *(.data .data.*)
         *(.bss .bss.*)
         *(COMMON)
-   data_end = .;
     } :data
 
     .rela : {
