@@ -38,10 +38,10 @@
 
 .section .pe_header
   mz_stub:
-    .word 0x5a4d, 0x0090, 0x0003, 0x0000, 0x0004, 0x0000, 0xffff, 0x0000
-    .word 0x00b8, 0x0000, 0x0000, 0x0000, 0x0040, 0x0000, 0x0000, 0x0000
-    .word 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
-    .word 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0080, 0x0000
+    .short 0x5a4d, 0x0090, 0x0003, 0x0000, 0x0004, 0x0000, 0xffff, 0x0000
+    .short 0x00b8, 0x0000, 0x0000, 0x0000, 0x0040, 0x0000, 0x0000, 0x0000
+    .short 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
+    .short 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0080, 0x0000
     .byte 0x0e, 0x1f, 0xba, 0x0e, 0x00, 0xb4, 0x09, 0xcd, 0x21, 0xb8, 0x01
     .byte 0x4c, 0xcd, 0x21, 0x54, 0x68, 0x69, 0x73, 0x20, 0x70, 0x72, 0x6f
     .byte 0x67, 0x72, 0x61, 0x6d, 0x20, 0x63, 0x61, 0x6e, 0x6e, 0x6f, 0x74
@@ -51,16 +51,16 @@
 
   pe_header:
     .long 0x00004550 // magic
-    .word 0x8664     // machine
-    .word 0x0004     // section #
+    .short 0x8664    // machine
+    .short 0x0004    // section #
     .long 0          // timestamp
     .long 0          // symbol table ptr
     .long 0          // symbol #
-    .word data_dirs_end - opt_header // opt header size
-    .word 0x0206     // characteristics
+    .short data_dirs_end - opt_header // opt header size
+    .short 0x0206    // characteristics
 
   opt_header:
-    .word 0x020b       // magic
+    .short 0x020b      // magic
     .byte 0x02         // maj linker ver
     .byte 0x26         // min linker ver
     .long __text_size  // code size
@@ -71,18 +71,18 @@
     .quad __image_base // image base
     .long 0x1000       // section alignment
     .long 0x1000       // file alignment
-    .word 0            // OS maj
-    .word 0            // OS min
-    .word 0            // image maj
-    .word 0            // image min
-    .word 0            // subsystem maj
-    .word 0            // subsystem min
+    .short 0           // OS maj
+    .short 0           // OS min
+    .short 0           // image maj
+    .short 0           // image min
+    .short 0           // subsystem maj
+    .short 0           // subsystem min
     .long 0            // win32 ver
     .long __image_size // image size
     .long __text_start // headers size
     .long 0            // checksum
-    .word 0x0a         // subsystem
-    .word 0            // dll characteristics
+    .short 0x0a        // subsystem
+    .short 0           // dll characteristics
     .quad 0            // stack reserve size
     .quad 0            // stack commit size
     .quad 0            // heap reserve size
@@ -119,8 +119,8 @@
     .long __text_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .word 0              // relocs count
-    .word 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x60000020     // characteristics
 
     .ascii ".sbat\0\0\0" // name
@@ -130,8 +130,8 @@
     .long __sbat_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .word 0              // relocs count
-    .word 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x40000000     // characteristics
 
     .ascii ".reloc\0\0"  // name
@@ -141,8 +141,8 @@
     .long reloc          // file location
     .long 0              // relocs
     .long 0              // line nums
-    .word 0              // relocs count
-    .word 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0x42000040     // characteristics
 
     .ascii ".data\0\0\0" // name
@@ -152,8 +152,8 @@
     .long __data_start   // file location
     .long 0              // relocs
     .long 0              // line nums
-    .word 0              // relocs count
-    .word 0              // line nums count
+    .short 0             // relocs count
+    .short 0             // line nums count
     .long 0xc0000040     // characteristics
 
 .section .text
