@@ -54,7 +54,7 @@ CFLAGS ?= -g -O2 -pipe -Wall -Wextra
 
 # Generic compilation flags
 
-override INCDIR += -I../inc -I../inc/$(ARCH) -I../inc/protocol
+override CPPFLAGS += -I../inc -I../inc/$(ARCH) -I../inc/protocol
 
 override CFLAGS += \
     -std=gnu11 \
@@ -100,10 +100,10 @@ override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
 all: $(OBJS)
 
 %.o: %.c
-	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 %.o: %.S
-	$(CC) $(INCDIR) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
