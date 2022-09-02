@@ -69,7 +69,7 @@ override CFLAGS += \
 # Arch-specific compilation flags
 
 ifeq ($(ARCH),ia32)
-	override CFLAGS += \
+    override CFLAGS += \
         -m32 \
         -march=i686 \
         -mabi=sysv \
@@ -77,7 +77,7 @@ ifeq ($(ARCH),ia32)
 endif
 
 ifeq ($(ARCH),x86_64)
-	override CFLAGS += \
+    override CFLAGS += \
         -m64 \
         -march=x86-64 \
         -mabi=sysv \
@@ -86,13 +86,13 @@ ifeq ($(ARCH),x86_64)
         -mno-sse \
         -mno-sse2 \
         -mno-red-zone
-	override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
+    override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
 endif
 
 ifeq ($(ARCH),aarch64)
-	override CFLAGS += \
-        -mgeneral-regs-only \
-        -fno-jump-tables
+    override CFLAGS += \
+        -fno-jump-tables \
+        -mgeneral-regs-only
 endif
 
 override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
