@@ -36,55 +36,64 @@
 #
 
 define DEFAULT_VAR =
-	ifeq ($(origin $1), default)
-		override $(1) := $(2)
-	endif
-	ifeq ($(origin $1), undefined)
-		override $(1) := $(2)
-	endif
+    ifeq ($(origin $1), default)
+        override $(1) := $(2)
+    endif
+    ifeq ($(origin $1), undefined)
+        override $(1) := $(2)
+    endif
 endef
 
-$(eval $(call DEFAULT_VAR,CC,gcc))
+$(eval $(call DEFAULT_VAR,CC,cc))
 
 # Target identification
 ARCH ?= x86_64
 
-# Arch-specific compilation flags
-
-ifeq ($(ARCH),ia64)
-	override CFLAGS += -mfixed-range=f32-f127
-endif
-
-ifeq ($(ARCH),ia32)
-	override CFLAGS += -mno-80387 -mno-mmx -mno-sse -m32
-endif
-
-ifeq ($(ARCH),x86_64)
-	override CFLAGS += -mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone \
-	                   -mabi=sysv -m64
-	override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
-endif
-
-ifeq ($(ARCH),mips64el)
-	override CFLAGS += -march=mips64r2 -mabi=64
-endif
-
-ifeq ($(ARCH),arm)
-	override CFLAGS += -marm
-endif
-
-ifeq ($(ARCH),aarch64)
-	override CFLAGS += -fno-jump-tables
-endif
+# Default CFLAGS
+CFLAGS ?= -g -O2 -pipe -Wall -Wextra
 
 # Generic compilation flags
 
 override INCDIR += -I../inc -I../inc/$(ARCH) -I../inc/protocol
 
-override CFLAGS += -g -O2 -Wall -Wextra -Werror \
-                   -std=gnu11 -Wno-error=pragmas -fpie -fno-lto \
-                   -fshort-wchar -fno-strict-aliasing \
-                   -ffreestanding -fno-stack-protector -fno-stack-check
+override CFLAGS += \
+    -std=gnu11 \
+    -ffreestanding \
+    -fno-stack-protector \
+    -fno-stack-check \
+    -fno-strict-aliasing \
+    -fshort-wchar \
+    -fno-lto \
+    -fpie
+
+# Arch-specific compilation flags
+
+ifeq ($(ARCH),ia32)
+	override CFLAGS += \
+        -m32 \
+        -march=i686 \
+        -mabi=sysv \
+        -mno-80387
+endif
+
+ifeq ($(ARCH),x86_64)
+	override CFLAGS += \
+        -m64 \
+        -march=x86-64 \
+        -mabi=sysv \
+        -mno-80387 \
+        -mno-mmx \
+        -mno-sse \
+        -mno-sse2 \
+        -mno-red-zone
+	override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
+endif
+
+ifeq ($(ARCH),aarch64)
+	override CFLAGS += \
+        -mgeneral-regs-only \
+        -fno-jump-tables
+endif
 
 override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
 
