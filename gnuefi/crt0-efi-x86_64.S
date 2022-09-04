@@ -36,7 +36,7 @@
     SUCH DAMAGE.
 */
 
-.section .pe_header
+.section .pe_header,""
   mz_stub:
     .short 0x5a4d, 0x0090, 0x0003, 0x0000, 0x0004, 0x0000, 0xffff, 0x0000
     .short 0x00b8, 0x0000, 0x0000, 0x0000, 0x0040, 0x0000, 0x0000, 0x0000
@@ -191,3 +191,5 @@
       .long dummy - reloc // Page RVA
       .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
       .long 0             // reloc for dummy
+
+.section .note.GNU-stack,"",%progbits
