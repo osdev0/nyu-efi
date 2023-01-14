@@ -1,6 +1,7 @@
 /* reloc_ia32.c - position independent x86 ELF shared object relocator
    Copyright (C) 1999 Hewlett-Packard Co.
 	Contributed by David Mosberger <davidm@hpl.hp.com>.
+   Copyright (C) 2022-2023 mintsuki
 
     All rights reserved.
 
