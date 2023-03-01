@@ -35,6 +35,8 @@
 #    SUCH DAMAGE.
 #
 
+override MAKEFLAGS += -rR
+
 define DEFAULT_VAR =
     ifeq ($(origin $1), default)
         override $(1) := $(2)
@@ -54,7 +56,9 @@ CFLAGS ?= -g -O2 -pipe -Wall -Wextra
 
 # Generic compilation flags
 
-override CPPFLAGS += -I../inc -I../inc/$(ARCH) -I../inc/protocol
+override CPPFLAGS := \
+    -I../inc -I../inc/$(ARCH) -I../inc/protocol \
+    $(CPPFLAGS)
 
 override CFLAGS += \
     -std=gnu11 \
