@@ -172,3 +172,5 @@
       .long dummy - reloc // Page RVA
       .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
       .long 0             // reloc for dummy
+
+.section .note.GNU-stack, "", %progbits

@@ -48,11 +48,8 @@ SECTIONS
     __reloc_end = __reloc_start + __reloc_size;
 
     .data : {
-        *(.srodata .srodata.*)
         *(.rodata .rodata.*)
-        *(.sdata .sdata.*)
         *(.data .data.*)
-        *(.sbss .sbss.*)
         *(.bss .bss.*)
         *(COMMON)
     } :data
