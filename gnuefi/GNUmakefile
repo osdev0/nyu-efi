@@ -49,10 +49,10 @@ endef
 $(eval $(call DEFAULT_VAR,CC,cc))
 
 # Target identification
-ARCH ?= x86_64
+$(eval $(call DEFAULT_VAR,ARCH,x86_64))
 
 # Default CFLAGS
-CFLAGS ?= -g -O2 -pipe -Wall -Wextra
+$(eval $(call DEFAULT_VAR,CFLAGS,-g -O2 -pipe -Wall -Wextra))
 
 # Generic compilation flags
 
