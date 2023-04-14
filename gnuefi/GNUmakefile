@@ -52,7 +52,7 @@ $(eval $(call DEFAULT_VAR,CC,cc))
 $(eval $(call DEFAULT_VAR,ARCH,x86_64))
 
 # Default CFLAGS
-$(eval $(call DEFAULT_VAR,CFLAGS,-g -O2 -pipe -Wall -Wextra))
+$(eval $(call DEFAULT_VAR,CFLAGS,-g -O2 -pipe))
 
 # Generic compilation flags
 
@@ -63,6 +63,8 @@ override CPPFLAGS := \
     -MP
 
 override CFLAGS += \
+    -Wall \
+    -Wextra \
     -std=gnu11 \
     -ffreestanding \
     -fno-stack-protector \
@@ -70,7 +72,7 @@ override CFLAGS += \
     -fno-strict-aliasing \
     -fshort-wchar \
     -fno-lto \
-    -fpie
+    -fPIE
 
 # Arch-specific compilation flags
 
