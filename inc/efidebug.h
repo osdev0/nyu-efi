@@ -19,8 +19,6 @@ Revision History
 
 --*/
 
-extern UINTN     EFIDebug;
-
 #if EFI_DEBUG
 
     #define DBGASSERT(a)        DbgAssert(__FILE__, __LINE__, #a)
@@ -87,24 +85,6 @@ extern UINTN     EFIDebug;
     #define ASSERT_STRUCT(p,t)      
 
 #endif
-
-//
-// Prototypes
-//
-
-INTN
-DbgAssert (
-    CONST CHAR8   *file,
-    INTN          lineno,
-    CONST CHAR8   *string
-    );
-
-INTN
-DbgPrint (
-    INTN          mask,
-    CONST CHAR8   *format,
-    ...
-    );
 
 //
 // Instruction Set Architectures definitions for debuggers
