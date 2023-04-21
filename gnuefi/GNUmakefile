@@ -51,8 +51,10 @@ $(eval $(call DEFAULT_VAR,CC,cc))
 # Target identification
 $(eval $(call DEFAULT_VAR,ARCH,x86_64))
 
-# Default CFLAGS
-$(eval $(call DEFAULT_VAR,CFLAGS,-g -O2 -pipe))
+override DEFAULT_CFLAGS := -g -O2 -pipe
+$(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CFLAGS)))
+override DEFAULT_CPPFLAGS :=
+$(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CPPFLAGS)))
 
 # Generic compilation flags
 
