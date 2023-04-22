@@ -46,10 +46,12 @@ define DEFAULT_VAR =
     endif
 endef
 
-$(eval $(call DEFAULT_VAR,CC,cc))
+override DEFAULT_CC := cc
+$(eval $(call DEFAULT_VAR,CC,$(DEFAULT_CC)))
 
 # Target identification
-$(eval $(call DEFAULT_VAR,ARCH,x86_64))
+override DEFAULT_ARCH := x86_64
+$(eval $(call DEFAULT_VAR,ARCH,$(DEFAULT_ARCH)))
 
 override DEFAULT_CFLAGS := -g -O2 -pipe
 $(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CFLAGS)))
@@ -59,7 +61,9 @@ $(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CPPFLAGS)))
 # Generic compilation flags
 
 override CPPFLAGS := \
-    -I../inc -I../inc/$(ARCH) -I../inc/protocol \
+    -I../inc \
+    -I../inc/$(ARCH) \
+    -I../inc/protocol \
     $(CPPFLAGS) \
     -MMD \
     -MP
