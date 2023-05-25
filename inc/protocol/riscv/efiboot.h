@@ -14,6 +14,9 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
+#ifndef _PROTOCOL_EFIBOOT_H
+#define _PROTOCOL_EFIBOOT_H
+
 #define RISCV_EFI_BOOT_PROTOCOL_GUID \
     { 0xccd15fec, 0x6f73, 0x4eec, \
     { 0x83, 0x95, 0x3e, 0x69, 0xe4, 0xb9, 0x40, 0xbf } }
@@ -34,3 +37,5 @@ typedef struct _RISCV_EFI_BOOT_PROTOCOL {
     UINT64                Revision;
     EFI_GET_BOOT_HARTID   GetBootHartId;
 } RISCV_EFI_BOOT_PROTOCOL;
+
+#endif
