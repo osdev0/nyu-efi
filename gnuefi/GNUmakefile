@@ -109,6 +109,17 @@ ifeq ($(ARCH),aarch64)
         -mgeneral-regs-only
 endif
 
+ifeq ($(ARCH),riscv64)
+    ifeq ($(shell $(CC) --version | grep -i 'clang'),)
+        override CFLAGS += -march=rv64imac_zicsr_zifencei
+    else
+        override CFLAGS += -march=rv64imac
+    endif
+    override CFLAGS += \
+        -mabi=lp64 \
+        -mgeneral-regs-only
+endif
+
 override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
 
 all: $(OBJS)
