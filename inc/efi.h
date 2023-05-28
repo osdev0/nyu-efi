@@ -42,18 +42,10 @@ Revision History
 #include "x86_64/efibind.h"
 #elif defined(_M_IX86) || defined(__i386__)
 #include "ia32/efibind.h"
-#elif defined(_M_IA64) || defined(__ia64__)
-#include "ia64/efibind.h"
 #elif defined (_M_ARM64) || defined(__aarch64__)
 #include "aarch64/efibind.h"
-#elif defined (_M_ARM) || defined(__arm__)
-#include "arm/efibind.h"
-#elif defined (_M_MIPS64) || defined(__mips64__) || defined(__mips64)
-#include "mips64el/efibind.h"
 #elif defined (__riscv) && __riscv_xlen == 64
 #include "riscv64/efibind.h"
-#elif defined (__loongarch64)
-#include "loongarch64/efibind.h"
 #else
 #error Usupported architecture
 #endif

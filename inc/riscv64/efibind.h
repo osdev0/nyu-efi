@@ -16,6 +16,9 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
+#ifndef RISCV64_EFI_BIND
+#define RISCV64_EFI_BIND
+
 #include <stdint.h>
 
 //
@@ -126,3 +129,5 @@ typedef uint64_t                UINTN;
 
 #define uefi_call_wrapper(func, va_num, ...) func(__VA_ARGS__)
 #define EFI_FUNCTION
+
+#endif

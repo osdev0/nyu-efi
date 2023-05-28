@@ -42,7 +42,6 @@
 #ifndef _EFIDBG_H_
 #define _EFIDBG_H_
 
-#include "eficontext.h"
 #include "efiser.h"
 
 typedef struct _DEBUGPORT_16550_CONFIG_DATA {
@@ -83,7 +82,7 @@ typedef
 VOID
 (*EXCEPTION_HANDLER) (
 	IN EXCEPTION_TYPE ExceptionType,
-    IN SYSTEM_CONTEXT *SystemContext
+    IN EFI_SYSTEM_CONTEXT *SystemContext
     );
 
 typedef
