@@ -111,9 +111,4 @@ typedef struct _LEGACY_BOOT_INTERFACE {
     SET_PRIORITY            SetPriority;   
 } LEGACY_BOOT_INTERFACE;
 
-EFI_STATUS
-PlInitializeLegacyBoot (
-    VOID
-    );
-
 #endif
