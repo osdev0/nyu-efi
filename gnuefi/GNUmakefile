@@ -100,7 +100,6 @@ ifeq ($(ARCH),x86_64)
         -mno-sse \
         -mno-sse2 \
         -mno-red-zone
-    override CPPFLAGS += -DGNU_EFI_USE_MS_ABI
 endif
 
 ifeq ($(ARCH),aarch64)
