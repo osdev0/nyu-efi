@@ -50,6 +50,9 @@ SECTIONS
     .data : {
         *(.rodata .rodata.*)
         *(.data .data.*)
+        __global_pointer$ = . + 0x800;
+        *(.sdata .sdata.*)
+        *(.sbss .sbss.*)
         *(.bss .bss.*)
         *(COMMON)
     } :data
@@ -68,7 +71,7 @@ SECTIONS
     } :data :dynamic
 
     __data_start = __reloc_end;
-    __data_size = SIZEOF(.sdata) + SIZEOF(.data) + SIZEOF(.rela) + SIZEOF(.got) + SIZEOF(.dynamic);
+    __data_size = SIZEOF(.data) + SIZEOF(.rela) + SIZEOF(.got) + SIZEOF(.dynamic);
     __data_end = __data_start + __data_size;
 
     __image_end = __data_end;
