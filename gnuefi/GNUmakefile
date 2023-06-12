@@ -64,9 +64,7 @@ override CPPFLAGS := \
     -I../inc \
     -I../inc/$(ARCH) \
     -I../inc/protocol \
-    $(CPPFLAGS) \
-    -MMD \
-    -MP
+    $(CPPFLAGS)
 
 override CFLAGS += \
     -Wall \
