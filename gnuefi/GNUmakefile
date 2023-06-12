@@ -118,14 +118,14 @@ ifeq ($(ARCH),riscv64)
         -mabi=lp64
 endif
 
-override OBJS := crt0-efi-$(ARCH).o reloc_$(ARCH).o
+override OBJS := crt0-efi-$(ARCH).S.o reloc_$(ARCH).c.o
 
 all: $(OBJS)
 
-%.o: %.c
+%.c.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-%.o: %.S
+%.S.o: %.S
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
