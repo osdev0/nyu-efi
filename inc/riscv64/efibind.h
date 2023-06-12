@@ -72,53 +72,13 @@ typedef uint64_t                UINTN;
 
 //
 // EFIAPI - prototype calling convention for EFI function pointers
-// BOOTSERVICE - prototype for implementation of a boot service interface
-// RUNTIMESERVICE - prototype for implementation of a runtime service interface
-// RUNTIMEFUNCTION - prototype for implementation of a runtime function that is not a service
-// RUNTIME_CODE - pragma macro for declaring runtime code
 //
 #ifndef EFIAPI                  // Forces EFI calling conventions reguardless of compiler options
 #define EFIAPI                  // Substitute expresion to force C calling convention
 #endif
-#define BOOTSERVICE
-#define RUNTIMESERVICE
-#define RUNTIMEFUNCTION
-#define RUNTIME_CODE(a)         alloc_text("rtcode", a)
-#define BEGIN_RUNTIME_DATA()    data_seg("rtdata")
-#define END_RUNTIME_DATA()      data_seg("")
 
 #define VOLATILE                volatile
 #define MEMORY_FENCE            __sync_synchronize
-
-//
-// When build similiar to FW, then link everything together as
-// one big module. For the MSVC toolchain, we simply tell the
-// linker what our driver init function is using /ENTRY.
-//
-#if defined(_MSC_EXTENSIONS)
-#define EFI_DRIVER_ENTRY_POINT(InitFunction) \
-    __pragma(comment(linker, "/ENTRY:" # InitFunction))
-#else
-#define EFI_DRIVER_ENTRY_POINT(InitFunction)    \
-    UINTN                                       \
-    InitializeDriver (                          \
-        VOID    *ImageHandle,                   \
-        VOID    *SystemTable                    \
-        )                                       \
-    {                                           \
-        return InitFunction(ImageHandle,        \
-                SystemTable);                   \
-    }                                           \
-                                                \
-    EFI_STATUS efi_main(                        \
-        EFI_HANDLE image,                       \
-        EFI_SYSTEM_TABLE *systab                \
-        ) __attribute__((weak,                  \
-                alias ("InitializeDriver")));
-#endif
-
-#define LOAD_INTERNAL_DRIVER(_if, type, name, entry) \
-   (_if)->LoadInternal(type, name, entry)
 
 //
 // Some compilers don't support the forward reference construct:
@@ -127,7 +87,6 @@ typedef uint64_t                UINTN;
 // The following macro provide a workaround for such cases.
 #define INTERFACE_DECL(x)       struct x
 
-#define uefi_call_wrapper(func, va_num, ...) func(__VA_ARGS__)
 #define EFI_FUNCTION
 
 #endif
