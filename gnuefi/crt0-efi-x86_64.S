@@ -36,7 +36,7 @@
     SUCH DAMAGE.
 */
 
-.section .pe_header,""
+.section .pe_header
   mz_stub:
     .short 0x5a4d, 0x0090, 0x0003, 0x0000, 0x0004, 0x0000, 0xffff, 0x0000
     .short 0x00b8, 0x0000, 0x0000, 0x0000, 0x0040, 0x0000, 0x0000, 0x0000
@@ -157,6 +157,7 @@
     .long 0xc0000040     // characteristics
 
 .section .text
+  .align 0x1000
   .globl _start
   _start:
     subq $8, %rsp

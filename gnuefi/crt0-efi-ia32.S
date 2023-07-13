@@ -156,34 +156,35 @@
     .long 0xc0000040     // characteristics
 
 .section .text
+  .align 0x1000
   .globl _start
   _start:
-	pushl %ebp
-	movl %esp,%ebp
+    pushl %ebp
+    movl %esp,%ebp
 
-	pushl 12(%ebp)			# copy "image" argument
-	pushl  8(%ebp)			# copy "systab" argument
+    pushl 12(%ebp)      // copy "image" argument
+    pushl  8(%ebp)      // copy "systab" argument
 
-	call 0f
-0:	popl %eax
-	movl %eax,%ebx
+    call 0f
+0:  popl %eax
+    movl %eax,%ebx
 
-	addl $__image_base-0b,%eax		# %eax = ldbase
-	addl $_DYNAMIC-0b,%ebx		# %ebx = _DYNAMIC
+    addl $__image_base-0b,%eax  // %eax = ldbase
+    addl $_DYNAMIC-0b,%ebx      // %ebx = _DYNAMIC
 
-	pushl %ebx			# pass _DYNAMIC as second argument
-	pushl %eax			# pass ldbase as first argument
-	call __relocate
-	popl %ebx
-	popl %ebx
- 	testl %eax,%eax
- 	jne .exit
+    pushl %ebx          // pass _DYNAMIC as second argument
+    pushl %eax          // pass ldbase as first argument
+    call __relocate
+    popl %ebx
+    popl %ebx
+    testl %eax,%eax
+    jne .exit
 
-  	call efi_main			# call app with "image" and "systab" argument
+    call efi_main       // call app with "image" and "systab" argument
 
 .exit:
-	leave
-  	ret
+    leave
+    ret
 
 // hand-craft a dummy .reloc section so EFI knows it's a relocatable executable:
 
@@ -196,3 +197,5 @@
       .long dummy - reloc // Page RVA
       .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
       .long 0             // reloc for dummy
+
+.section .note.GNU-stack,"",%progbits

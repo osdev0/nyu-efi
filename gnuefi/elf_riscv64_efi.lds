@@ -1,5 +1,5 @@
 OUTPUT_FORMAT(elf64-littleriscv)
-OUTPUT_ARCH(riscv)
+OUTPUT_ARCH(riscv:rv64)
 ENTRY(_start)
 
 PHDRS
@@ -50,9 +50,6 @@ SECTIONS
     .data : {
         *(.rodata .rodata.*)
         *(.data .data.*)
-        __global_pointer$ = . + 0x800;
-        *(.sdata .sdata.*)
-        *(.sbss .sbss.*)
         *(.bss .bss.*)
         *(COMMON)
     } :data
