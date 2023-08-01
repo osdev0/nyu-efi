@@ -50,6 +50,8 @@ SECTIONS
     .data : {
         *(.rodata .rodata.*)
         *(.data .data.*)
+        *(.sdata .sdata.*)
+        *(.sbss .sbss.*)
         *(.bss .bss.*)
         *(COMMON)
     } :data
