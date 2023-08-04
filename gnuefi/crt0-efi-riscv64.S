@@ -142,6 +142,7 @@
   .align 12
   .globl _start
   _start:
+  .option norelax
     addi sp, sp, -24
 
     sd a0, 0(sp)
