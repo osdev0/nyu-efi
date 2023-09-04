@@ -119,10 +119,10 @@ override OBJS := crt0-efi-$(ARCH).S.o reloc_$(ARCH).c.o
 
 all: $(OBJS)
 
-%.c.o: %.c
+%.c.o: %.c GNUmakefile
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-%.S.o: %.S
+%.S.o: %.S GNUmakefile
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
