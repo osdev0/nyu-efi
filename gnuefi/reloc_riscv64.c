@@ -81,6 +81,10 @@ EFI_STATUS __relocate (long ldbase, Elf64_Dyn *dyn)
                 break;
 
             case R_RISCV_RELATIVE:
+                if (rel->r_offset < 0x1000) {
+                    return EFI_LOAD_ERROR;
+                }
+
                 addr = (unsigned long *)
                     (ldbase + rel->r_offset);
                 *addr = ldbase + rel->r_addend;

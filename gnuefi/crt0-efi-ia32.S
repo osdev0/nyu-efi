@@ -34,7 +34,11 @@
     SUCH DAMAGE.
 */
 
-.section .pe_header
+.section .pe_header,"ax"
+  .align 0x1000
+
+  fbase:
+
   mz_stub:
     .short 0x5a4d, 0x0090, 0x0003, 0x0000, 0x0004, 0x0000, 0xffff, 0x0000
     .short 0x00b8, 0x0000, 0x0000, 0x0000, 0x0040, 0x0000, 0x0000, 0x0000
@@ -50,7 +54,7 @@
   pe_header:
     .long 0x00004550 // magic
     .short 0x014c    // machine
-    .short 0x0004    // section #
+    .short 0x0003    // section #
     .long 0          // timestamp
     .long 0          // symbol table ptr
     .long 0          // symbol #
@@ -61,13 +65,13 @@
     .short 0x010b      // magic
     .byte 0x02         // maj linker ver
     .byte 0x26         // min linker ver
-    .long __text_size  // code size
-    .long __data_size  // data size
+    .long __text_size - fbase // code size
+    .long __data_size - fbase // data size
     .long 0            // uninitialised data size
-    .long _start       // entry point
-    .long __text_start // code base
-    .long __data_start // data base
-    .long __image_base // image base
+    .long _start - fbase // entry point
+    .long __text_start - fbase // code base
+    .long __data_start - fbase // data base
+    .long __image_base - fbase // image base
     .long 0x1000       // section alignment
     .long 0x1000       // file alignment
     .short 0           // OS maj
@@ -77,8 +81,8 @@
     .short 0           // subsystem maj
     .short 0           // subsystem min
     .long 0            // win32 ver
-    .long __image_size // image size
-    .long __text_start // headers size
+    .long __image_size - fbase // image size
+    .long __text_start - fbase // headers size
     .long 0            // checksum
     .short 0x0a        // subsystem
     .short 0           // dll characteristics
@@ -107,37 +111,26 @@
     .long 0, 0
 
     // base relocation table
-    .long reloc, 12
+    .long reloc - fbase, 12
   data_dirs_end:
 
   sect_table:
     .ascii ".text\0\0\0" // name
-    .long __text_size    // virtual size
-    .long __text_start   // rva
-    .long __text_size    // file size
-    .long __text_start   // file location
+    .long __text_size - fbase // virtual size
+    .long __text_start - fbase // rva
+    .long __text_size - fbase // file size
+    .long __text_start - fbase // file location
     .long 0              // relocs
     .long 0              // line nums
     .short 0             // relocs count
     .short 0             // line nums count
     .long 0x60000020     // characteristics
 
-    .ascii ".sbat\0\0\0" // name
-    .long __sbat_sizev   // virtual size
-    .long __sbat_start   // rva
-    .long __sbat_size    // file size
-    .long __sbat_start   // file location
-    .long 0              // relocs
-    .long 0              // line nums
-    .short 0             // relocs count
-    .short 0             // line nums count
-    .long 0x40000000     // characteristics
-
     .ascii ".reloc\0\0"  // name
     .long 12             // virtual size
-    .long reloc          // rva
+    .long reloc - fbase  // rva
     .long 0x1000         // file size
-    .long reloc          // file location
+    .long reloc - fbase  // file location
     .long 0              // relocs
     .long 0              // line nums
     .short 0             // relocs count
@@ -145,10 +138,10 @@
     .long 0x42000040     // characteristics
 
     .ascii ".data\0\0\0" // name
-    .long __data_size    // virtual size
-    .long __data_start   // rva
-    .long __data_size    // file size
-    .long __data_start   // file location
+    .long __data_size - fbase // virtual size
+    .long __data_start - fbase // rva
+    .long __data_size - fbase // file size
+    .long __data_start - fbase // file location
     .long 0              // relocs
     .long 0              // line nums
     .short 0             // relocs count
@@ -192,7 +185,7 @@
   .align 0x1000
     dummy: .long 0
 
-.section .data.reloc
+.section .reloc,"a"
     reloc:
       .long dummy - reloc // Page RVA
       .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
