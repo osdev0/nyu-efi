@@ -185,7 +185,7 @@
   .align 0x1000
     dummy: .long 0
 
-.section .reloc,"a"
+.section .dummy_reloc,"a"
     reloc:
       .long dummy - reloc // Page RVA
       .long 12            // Block Size (2*4+2*2), must be aligned by 32 Bits
