@@ -2,7 +2,7 @@
 #  Copyright (c) 1999-2007 Hewlett-Packard Development Company, L.P.
 #	Contributed by David Mosberger <davidm@hpl.hp.com>
 #	Contributed by Stephane Eranian <eranian@hpl.hp.com>
-#  Copyright (C) 2022-2023 mintsuki
+#  Copyright (C) 2022-2024 mintsuki
 #
 #    All rights reserved.
 #

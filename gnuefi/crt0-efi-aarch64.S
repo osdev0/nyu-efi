@@ -2,7 +2,7 @@
  * crt0-efi-aarch64.S - PE/COFF header for AArch64 EFI applications
  *
  * Copyright (C) 2014 Linaro Ltd. <ard.biesheuvel@linaro.org>
- * Copyright (C) 2022-2023 mintsuki
+ * Copyright (C) 2022-2024 mintsuki
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
