@@ -46,8 +46,10 @@ Revision History
 #include "aarch64/efibind.h"
 #elif defined (__riscv) && __riscv_xlen == 64
 #include "riscv64/efibind.h"
+#elif defined (__loongarch__) && __loongarch_grlen == 64
+#include "loongarch64/efibind.h"
 #else
-#error Usupported architecture
+#error Unsupported architecture
 #endif
 
 #include "eficompiler.h"
