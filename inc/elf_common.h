@@ -306,6 +306,7 @@ typedef struct {
 				   and MPRC of Peking University */
 #define	EM_AARCH64	183	/* AArch64 (64-bit ARM) */
 #define	EM_RISCV	243	/* RISC-V */
+#define	EM_LOONGARCH64	258	/* LoongArch */
 
 /* Non-standard or deprecated. */
 #define	EM_486		6	/* Intel i486. */
@@ -372,6 +373,12 @@ typedef struct {
 #define	EF_PPC_EMB		0x80000000
 #define	EF_PPC_RELOCATABLE	0x00010000
 #define	EF_PPC_RELOCATABLE_LIB	0x00008000
+
+#define	EF_LARCH_ABI_MODIFIER_MASK  0x07
+#define	EF_LARCH_ABI_SOFT_FLOAT     0x01
+#define	EF_LARCH_ABI_SINGLE_FLOAT   0x02
+#define	EF_LARCH_ABI_DOUBLE_FLOAT   0x03
+#define	EF_LARCH_OBJABI_V1          0x40
 
 #define	EF_RISCV_RVC		0x00000001
 #define	EF_RISCV_FLOAT_ABI_MASK	0x00000006
@@ -1317,6 +1324,24 @@ typedef struct {
 #define	R_PPC_EMB_RELST_HA	114
 #define	R_PPC_EMB_BIT_FLD	115
 #define	R_PPC_EMB_RELSDA	116
+
+/*
+ * LoongArch relocation types.
+ */
+
+#define	R_LARCH_NONE            0
+#define	R_LARCH_32              1
+#define	R_LARCH_64              2
+#define	R_LARCH_RELATIVE        3
+#define	R_LARCH_COPY            4
+#define	R_LARCH_JUMP_SLOT       5
+#define	R_LARCH_TLS_DTPMOD32    6
+#define	R_LARCH_TLS_DTPMOD64    7
+#define	R_LARCH_TLS_DTPREL32    8
+#define	R_LARCH_TLS_DTPREL64    9
+#define	R_LARCH_TLS_TPREL32     10
+#define	R_LARCH_TLS_TPREL64     11
+#define	R_LARCH_IRELATIVE       12
 
 /*
  * RISC-V relocation types.
