@@ -3,6 +3,7 @@
    Copyright (C) 2014 Linaro Ltd. <ard.biesheuvel@linaro.org>
    Copyright (C) 1999 Hewlett-Packard Co.
     Contributed by David Mosberger <davidm@hpl.hp.com>.
+   Copyright (C) 2024 mintsuki and contributors
 
     All rights reserved.
 
@@ -62,12 +63,6 @@ EFI_STATUS __relocate (long ldbase, Elf64_Dyn *dyn)
                 relent = dyn[i].d_un.d_val;
                 break;
 
-            case DT_PLTGOT:
-                addr = (unsigned long *)
-                    ((unsigned long)dyn[i].d_un.d_ptr
-                     + ldbase);
-                break;
-
             default:
                 break;
         }
@@ -92,7 +87,7 @@ EFI_STATUS __relocate (long ldbase, Elf64_Dyn *dyn)
 
                 addr = (unsigned long *)
                     (ldbase + rel->r_offset);
-                *addr += ldbase;
+                *addr = ldbase + rel->r_addend;
                 break;
 
             default:
