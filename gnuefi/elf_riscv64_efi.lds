@@ -67,5 +67,6 @@ SECTIONS
     /DISCARD/ : {
         *(.eh_frame)
         *(.note .note.*)
+        *(.interp)
     }
 }
