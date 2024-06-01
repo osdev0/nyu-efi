@@ -65,7 +65,7 @@ SECTIONS
     __image_end = ABSOLUTE(.);
 
     /DISCARD/ : {
-        *(.eh_frame)
+        *(.eh_frame*)
         *(.note .note.*)
         *(.interp)
     }
