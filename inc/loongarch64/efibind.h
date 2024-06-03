@@ -5,6 +5,7 @@
  * Author: Heiher <r@hev.cc>
  * Copright (C) 2021 Loongson Technology Corporation Limited.
  * Author: zhoumingtao <zhoumingtao@loongson.cn>
+ * Copyright (C) 2024 mintsuki and contributors
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -19,24 +20,10 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
-#if !defined(__STDC_VERSION__) || (__STDC_VERSION__ < 199901L ) && !defined(__cplusplus)
+#ifndef LOONGARCH64_EFI_BIND
+#define LOONGARCH64_EFI_BIND
 
-// ANSI C 1999/2000 stdint.h integer width declarations
-
-typedef unsigned long       uint64_t;
-typedef long                int64_t;
-typedef unsigned int        uint32_t;
-typedef int                 int32_t;
-typedef unsigned short      uint16_t;
-typedef short               int16_t;
-typedef unsigned char       uint8_t;
-typedef signed char         int8_t;
-typedef uint64_t            uintptr_t;
-typedef int64_t             intptr_t;
-
-#else
 #include <stdint.h>
-#endif
 
 //
 // Basic EFI types of various widths
@@ -98,53 +85,16 @@ typedef uint64_t   UINTN;
 
 //
 // EFIAPI - prototype calling convention for EFI function pointers
-// BOOTSERVICE - prototype for implementation of a boot service interface
-// RUNTIMESERVICE - prototype for implementation of a runtime service interface
-// RUNTIMEFUNCTION - prototype for implementation of a runtime function that is not a service
-// RUNTIME_CODE - pragma macro for declaring runtime code
 //
 
 #ifndef EFIAPI          // Forces EFI calling conventions reguardless of compiler options
 #define EFIAPI          // Substitute expresion to force C calling convention
 #endif
 
-#define BOOTSERVICE
-#define RUNTIMESERVICE
-#define RUNTIMEFUNCTION
-
-
-#define RUNTIME_CODE(a)         alloc_text("rtcode", a)
-#define BEGIN_RUNTIME_DATA()    data_seg("rtdata")
-#define END_RUNTIME_DATA()      data_seg("")
 
 #define VOLATILE                volatile
 
 #define MEMORY_FENCE            __sync_synchronize
-
-//
-// When build similiar to FW, then link everything together as
-// one big module.
-//
-
-#define EFI_DRIVER_ENTRY_POINT(InitFunction)    \
-    UINTN                                       \
-    InitializeDriver (                          \
-        VOID    *ImageHandle,                   \
-        VOID    *SystemTable                    \
-        )                                       \
-    {                                           \
-        return InitFunction(ImageHandle,        \
-                SystemTable);                   \
-    }                                           \
-                                                \
-    EFI_STATUS efi_main(                        \
-        EFI_HANDLE image,                       \
-        EFI_SYSTEM_TABLE *systab                \
-        ) __attribute__((weak,                  \
-                alias ("InitializeDriver")));
-
-#define LOAD_INTERNAL_DRIVER(_if, type, name, entry)    \
-        (_if)->LoadInternal(type, name, entry)
 
 
 //
@@ -155,5 +105,6 @@ typedef uint64_t   UINTN;
 
 #define INTERFACE_DECL(x) struct x
 
-#define uefi_call_wrapper(func, va_num, ...) func(__VA_ARGS__)
 #define EFI_FUNCTION
+
+#endif
