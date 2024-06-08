@@ -166,11 +166,11 @@
     popq %rdi
 
     test %rax, %rax
-    jnz .exit
+    jnz 0f
 
     call efi_main
 
-  .exit:
+0:
     addq $8, %rsp
     ret
 

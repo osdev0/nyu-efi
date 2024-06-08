@@ -171,11 +171,11 @@
     popl %ebx
     popl %ebx
     testl %eax,%eax
-    jne .exit
+    jne 0f
 
     call efi_main       // call app with "image" and "systab" argument
 
-.exit:
+0:
     leave
     ret
 
