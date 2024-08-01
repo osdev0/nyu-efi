@@ -115,6 +115,12 @@ ifeq ($(ARCH),riscv64)
         -mno-relax
 endif
 
+ifeq ($(ARCH),loongarch64)
+    override CFLAGS += \
+        -march=loongarch64 \
+        -mabi=lp64s
+endif
+
 override OBJS := crt0-efi-$(ARCH).S.o reloc_$(ARCH).c.o
 
 all: $(OBJS)
