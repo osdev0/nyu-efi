@@ -1,5 +1,4 @@
-OUTPUT_FORMAT("elf64-loongarch", "elf64-loongarch", "elf64-loongarch")
-OUTPUT_ARCH(loongarch)
+OUTPUT_FORMAT(elf64-loongarch)
 ENTRY(_start)
 
 PHDRS
