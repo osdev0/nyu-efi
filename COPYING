@@ -4,5 +4,5 @@ conditions specified in README.efilib.
 "inc/elf32.h", "inc/elf64.h", and "inc/elf_common.h" are licensed under
 the conditions specified in the respective files.
 
-The code inside the "gnuefi" directory is licensed under the conditions
+The code inside the "src" directory is licensed under the conditions
 specified in each source file.
