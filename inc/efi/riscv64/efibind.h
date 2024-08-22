@@ -20,12 +20,11 @@
 #define EFI_RISCV64_EFIBIND_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
 //
 // Basic EFI types of various widths
 //
-
-#include <stddef.h>
 
 typedef uint64_t                UINT64;
 typedef int64_t                 INT64;
@@ -34,9 +33,9 @@ typedef int32_t                 INT32;
 typedef uint16_t                UINT16;
 typedef int16_t                 INT16;
 typedef uint8_t                 UINT8;
-typedef char                    CHAR8;
 typedef int8_t                  INT8;
-typedef wchar_t                 CHAR16;
+typedef unsigned char                    CHAR8;
+typedef uint16_t                 CHAR16;
 #define WCHAR                   CHAR16
 #undef VOID
 typedef void                    VOID;
