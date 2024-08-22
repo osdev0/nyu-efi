@@ -71,6 +71,7 @@ extern "C" {
 #include "efi/efifs.h"
 #include "efi/efierr.h"
 #include "efi/efiui.h"
+#include "efi/efimp.h"
 #include "efi/efiip.h"
 #include "efi/efiudp.h"
 #include "efi/efitcp.h"
