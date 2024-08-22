@@ -2,7 +2,7 @@ limine-efi
 ==========
 
 limine-efi is a fork of GNU-EFI that strips out all code save for
-the relocation stubs and the core EFI header files.
+the relocation stubs and the EFI header files.
 
 Additionally, it ships, in the "inc" directory, the ELF headers necessary
 for the relocation code to build, along with a rework of said relocation
