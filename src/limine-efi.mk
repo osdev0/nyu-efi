@@ -62,8 +62,6 @@ $(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CPPFLAGS)))
 
 override CPPFLAGS := \
     -I../inc \
-    -I../inc/$(ARCH) \
-    -I../inc/protocol \
     $(CPPFLAGS)
 
 override CFLAGS += \
