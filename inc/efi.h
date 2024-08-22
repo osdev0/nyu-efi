@@ -53,7 +53,7 @@ extern "C" {
 #elif defined (__loongarch64)
 #include "loongarch64/efibind.h"
 #else
-#error Usupported architecture
+#error Unsupported architecture
 #endif
 
 #include "eficompiler.h"
