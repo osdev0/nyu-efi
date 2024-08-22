@@ -24,8 +24,8 @@
  * This is based on ShellPkg/Include/Protocol/EfiShellInterface.h from EDK II.
  */
 
-#ifndef EFI_EFISHELLINTF_H_
-#define EFI_EFISHELLINTF_H_
+#ifndef _SHELLINTERFACE_H_
+#define _SHELLINTERFACE_H_
 
 
 #define SHELL_INTERFACE_PROTOCOL_GUID \
