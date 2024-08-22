@@ -1,5 +1,5 @@
 /*-
- * SPDX-License-Identifier: BSD-2-Clause-FreeBSD
+ * SPDX-License-Identifier: BSD-2-Clause
  *
  * Copyright (c) 2017, 2018 Dell EMC
  * Copyright (c) 2000, 2001, 2008, 2011, David E. O'Brien
@@ -26,8 +26,6 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- *
- * $FreeBSD$
  */
 
 #ifndef _SYS_ELF_COMMON_H_
@@ -890,6 +888,9 @@ typedef struct {
 #define	STV_SINGLETON	0x5
 #define	STV_ELIMINATE	0x6
 
+/* Architecture specific data - st_other */
+#define	STO_AARCH64_VARIANT_PCS 0x80
+
 /* Special symbol table indexes. */
 #define	STN_UNDEF	0	/* Undefined symbol index. */
 
@@ -994,8 +995,9 @@ typedef struct {
 #define	AT_KPRELOAD	34	/* Base of vdso, preloaded by rtld */
 #define	AT_USRSTACKBASE	35	/* Top of user stack */
 #define	AT_USRSTACKLIM	36	/* Grow limit of user stack */
+#define	AT_CHERI_STATS	37	/* Reserved */
 
-#define	AT_COUNT	37	/* Count of defined aux entry types. */
+#define	AT_COUNT	38	/* Count of defined aux entry types. */
 
 /*
  * Relocation types.
@@ -1166,7 +1168,7 @@ typedef struct {
 #define	R_IA_64_PCREL22		0x7a	/* immediate22	S + A - P */
 #define	R_IA_64_PCREL64I	0x7b	/* immediate64	S + A - P */
 #define	R_IA_64_IPLTMSB		0x80	/* function descriptor MSB special */
-#define	R_IA_64_IPLTLSB		0x81	/* function descriptor LSB speciaal */
+#define	R_IA_64_IPLTLSB		0x81	/* function descriptor LSB special */
 #define	R_IA_64_SUB		0x85	/* immediate64	A - S */
 #define	R_IA_64_LTOFF22X	0x86	/* immediate22	special */
 #define	R_IA_64_LDXMOV		0x87	/* immediate22	special */
