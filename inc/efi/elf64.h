@@ -29,7 +29,7 @@
 #ifndef EFI_ELF64_H_
 #define EFI_ELF64_H_ 1
 
-#include "efi_elf_common.h"
+#include "elf_common.h"
 
 /*
  * ELF definitions common to all 64-bit architectures.

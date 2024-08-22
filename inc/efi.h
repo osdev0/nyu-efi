@@ -43,39 +43,39 @@ extern "C" {
 #define EFI_FIRMWARE_REVISION ((EFI_FIRMWARE_MAJOR_REVISION <<16) | (EFI_FIRMWARE_MINOR_REVISION))
 
 #if defined(_M_X64) || defined(__x86_64__) || defined(__amd64__)
-#include "x86_64/efibind.h"
+#include "efi/x86_64/efibind.h"
 #elif defined(_M_IX86) || defined(__i386__)
-#include "ia32/efibind.h"
+#include "efi/ia32/efibind.h"
 #elif defined (_M_ARM64) || defined(__aarch64__)
-#include "aarch64/efibind.h"
+#include "efi/aarch64/efibind.h"
 #elif defined (__riscv) && __riscv_xlen == 64
-#include "riscv64/efibind.h"
+#include "efi/riscv64/efibind.h"
 #elif defined (__loongarch64)
-#include "loongarch64/efibind.h"
+#include "efi/loongarch64/efibind.h"
 #else
 #error Unsupported architecture
 #endif
 
-#include "eficompiler.h"
-#include "efidef.h"
-#include "efidevp.h"
-#include "efipciio.h"
-#include "efiprot.h"
-#include "eficon.h"
-#include "eficonex.h"
-#include "efiser.h"
-#include "efi_nii.h"
-#include "efipxebc.h"
-#include "efinet.h"
-#include "efiapi.h"
-#include "efifs.h"
-#include "efierr.h"
-#include "efiui.h"
-#include "efiip.h"
-#include "efiudp.h"
-#include "efitcp.h"
-#include "efipoint.h"
-#include "efishell.h"
+#include "efi/eficompiler.h"
+#include "efi/efidef.h"
+#include "efi/efidevp.h"
+#include "efi/efipciio.h"
+#include "efi/efiprot.h"
+#include "efi/eficon.h"
+#include "efi/eficonex.h"
+#include "efi/efiser.h"
+#include "efi/efi_nii.h"
+#include "efi/efipxebc.h"
+#include "efi/efinet.h"
+#include "efi/efiapi.h"
+#include "efi/efifs.h"
+#include "efi/efierr.h"
+#include "efi/efiui.h"
+#include "efi/efiip.h"
+#include "efi/efiudp.h"
+#include "efi/efitcp.h"
+#include "efi/efipoint.h"
+#include "efi/efishell.h"
 
 #ifdef __cplusplus
 }
