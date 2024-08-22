@@ -396,17 +396,4 @@ typedef struct _EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL {
   UINT32                                          SegmentNumber;
 } EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL;
 
-typedef struct {
-    UINT8   Register;
-    UINT8   Function;
-    UINT8   Device;
-    UINT8   Bus;
-    UINT32  Reserved;
-} EFI_PCI_ADDRESS;
-
-typedef union {
-    UINT64          Address;
-    EFI_PCI_ADDRESS     EfiAddress;
-} EFI_PCI_ADDRESS_UNION;
-
 #endif /* _EFI_PCI_IO_H */

@@ -33,6 +33,10 @@ Revision History
 #ifndef _EFI_INCLUDE_
 #define _EFI_INCLUDE_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define EFI_FIRMWARE_VENDOR         L"INTEL"
 #define EFI_FIRMWARE_MAJOR_REVISION 12
 #define EFI_FIRMWARE_MINOR_REVISION 33
@@ -46,10 +50,10 @@ Revision History
 #include "aarch64/efibind.h"
 #elif defined (__riscv) && __riscv_xlen == 64
 #include "riscv64/efibind.h"
-#elif defined (__loongarch__) && __loongarch_grlen == 64
+#elif defined (__loongarch64)
 #include "loongarch64/efibind.h"
 #else
-#error Unsupported architecture
+#error Usupported architecture
 #endif
 
 #include "eficompiler.h"
@@ -72,5 +76,9 @@ Revision History
 #include "efitcp.h"
 #include "efipoint.h"
 #include "efishell.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
