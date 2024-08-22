@@ -28,8 +28,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef _SYS_ELF_COMMON_H_
-#define	_SYS_ELF_COMMON_H_ 1
+#ifndef EFI_ELF_COMMON_H_
+#define	EFI_ELF_COMMON_H_ 1
 
 #include <stdint.h>
 

@@ -26,10 +26,10 @@
  * SUCH DAMAGE.
  */
 
-#ifndef _SYS_ELF32_H_
-#define _SYS_ELF32_H_ 1
+#ifndef EFI_ELF32_H_
+#define EFI_ELF32_H_ 1
 
-#include "elf_common.h"
+#include "efi_elf_common.h"
 
 /*
  * ELF definitions common to all 32-bit architectures.
