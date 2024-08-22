@@ -1,8 +1,8 @@
 /* 
     PE32+ header file
  */
-#ifndef _PE_H
-#define _PE_H
+#ifndef EFI_X86_64_PE_H_
+#define EFI_X86_64_PE_H_
 
 #define IMAGE_DOS_SIGNATURE                 0x5A4D      // MZ
 #define IMAGE_OS2_SIGNATURE                 0x454E      // NE

@@ -1,5 +1,5 @@
-#ifndef _EFI_ROMLOAD_H
-#define _EFI_ROMLOAD_H
+#ifndef EFI_ROMLOAD_H_
+#define EFI_ROMLOAD_H_
 
 #define ROM_SIGNATURE 0xaa55
 #define PCIDS_SIGNATURE "PCIR"

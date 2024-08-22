@@ -1,3 +1,6 @@
+#ifndef EFI_PROTOCOL_EFIVAR_H_
+#define EFI_PROTOCOL_EFIVAR_H_
+
 /*++
 
 Copyright (c) 1998  Intel Corporation
@@ -131,3 +134,4 @@ typedef struct _EFI_VARIABLE_STORE {
 //      function only when needed.
 //
 
+#endif

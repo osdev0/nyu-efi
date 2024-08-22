@@ -1,5 +1,5 @@
-#ifndef _EFI_ERR_H
-#define _EFI_ERR_H
+#ifndef EFI_EFIERR_H_
+#define EFI_EFIERR_H_
 
 /*++
 

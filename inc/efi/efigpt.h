@@ -1,5 +1,5 @@
-#ifndef _EFI_GPT_H
-#define _EFI_GPT_H
+#ifndef EFI_EFIGPT_H_
+#define EFI_EFIGPT_H_
 /*++
 
 Copyright (c) 1998  Intel Corporation

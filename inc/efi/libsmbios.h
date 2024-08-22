@@ -1,5 +1,5 @@
-#ifndef _LIB_SMBIOS_H
-#define _LIB_SMBIOS_H
+#ifndef EFI_LIBSMBIOS_H_
+#define EFI_LIBSMBIOS_H_
 /*++
 
 Copyright (c) 2000  Intel Corporation

@@ -1,5 +1,5 @@
-#ifndef _EFI_DEF_H
-#define _EFI_DEF_H
+#ifndef EFI_EFIDEF_H_
+#define EFI_EFIDEF_H_
 
 /*++
 

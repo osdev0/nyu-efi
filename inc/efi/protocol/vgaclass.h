@@ -1,5 +1,5 @@
-#ifndef _VGA_CLASS_H
-#define _VGA_CLASS_H
+#ifndef EFI_PROTOCOL_VGACLASS_H_
+#define EFI_PROTOCOL_VGACLASS_H_
 
 /*++
 

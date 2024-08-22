@@ -1,5 +1,5 @@
-#ifndef _EFI_API_H
-#define _EFI_API_H
+#ifndef EFI_EFIAPI_H_
+#define EFI_EFIAPI_H_
 
 /*++
 

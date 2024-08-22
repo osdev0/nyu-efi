@@ -20,8 +20,8 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef LOONGARCH64_EFI_BIND
-#define LOONGARCH64_EFI_BIND
+#ifndef EFI_LOONGARCH64_EFIBIND_H_
+#define EFI_LOONGARCH64_EFIBIND_H_
 
 #include <stdint.h>
 

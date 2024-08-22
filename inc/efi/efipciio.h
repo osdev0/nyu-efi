@@ -1,5 +1,5 @@
-#ifndef _EFI_PCI_IO_H
-#define _EFI_PCI_IO_H
+#ifndef EFI_EFIPCIIO_H_
+#define EFI_EFIPCIIO_H_
 
 #define EFI_PCI_IO_PROTOCOL_GUID \
     { 0x4cf5b200, 0x68b8, 0x4ca5, {0x9e, 0xec, 0xb2, 0x3e, 0x3f, 0x50, 0x02, 0x9a} }

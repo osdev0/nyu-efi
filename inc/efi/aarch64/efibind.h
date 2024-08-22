@@ -15,8 +15,8 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef AARCH64_EFI_BIND
-#define AARCH64_EFI_BIND
+#ifndef EFI_AARCH64_EFIBIND_H_
+#define EFI_AARCH64_EFIBIND_H_
 
 #include <stdint.h>
 

@@ -1,5 +1,5 @@
-#ifndef _EFI_IP_H
-#define _EFI_IP_H
+#ifndef EFI_EFIIP_H_
+#define EFI_EFIIP_H_
 
 /*++
 Copyright (c) 2013  Intel Corporation

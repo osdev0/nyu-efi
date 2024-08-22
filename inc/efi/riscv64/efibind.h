@@ -16,8 +16,8 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef RISCV64_EFI_BIND
-#define RISCV64_EFI_BIND
+#ifndef EFI_RISCV64_EFIBIND_H_
+#define EFI_RISCV64_EFIBIND_H_
 
 #include <stdint.h>
 

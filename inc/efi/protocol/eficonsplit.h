@@ -1,5 +1,5 @@
-#ifndef _EFI_CONFORK_H
-#define _EFI_CONFORK_H
+#ifndef EFI_PROTOCOL_EFICONSPLIT_H_
+#define EFI_PROTOCOL_EFICONSPLIT_H_
 /*++
 
 Copyright (c) 1999  Intel Corporation

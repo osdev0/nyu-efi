@@ -39,8 +39,8 @@
  */
 
 
-#ifndef _EFIDBG_H_
-#define _EFIDBG_H_
+#ifndef EFI_PROTOCOL_EFIDBG_H_
+#define EFI_PROTOCOL_EFIDBG_H_
 
 #include "efiser.h"
 

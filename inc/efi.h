@@ -30,8 +30,8 @@ Revision History
 //
 
 
-#ifndef _EFI_INCLUDE_
-#define _EFI_INCLUDE_
+#ifndef EFI_H_
+#define EFI_H_
 
 #ifdef __cplusplus
 extern "C" {

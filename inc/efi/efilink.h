@@ -1,5 +1,5 @@
-#ifndef _EFI_LINK_H
-#define _EFI_LINK_H
+#ifndef EFI_EFILINK_H_
+#define EFI_EFILINK_H_
 
 /*++
 

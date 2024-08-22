@@ -1,3 +1,6 @@
+#ifndef EFI_EFICOMPILER_H_
+#define EFI_EFICOMPILER_H_
+
 /*++
 
 Copyright (c) 2016 Pete Batard <pete@akeo.ie>
@@ -15,3 +18,5 @@ Abstract:
 #define EFI_UNUSED __attribute__((__unused__))
 
 #define ALIGN(x) __attribute__((__aligned__(x)))
+
+#endif

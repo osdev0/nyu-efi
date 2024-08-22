@@ -17,8 +17,8 @@ Revision History
 
 --*/
 
-#ifndef IA32_EFI_BIND
-#define IA32_EFI_BIND
+#ifndef EFI_IA32_EFIBIND_H_
+#define EFI_IA32_EFIBIND_H_
 
 #include <stdint.h>
 

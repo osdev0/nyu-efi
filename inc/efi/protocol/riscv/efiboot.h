@@ -14,8 +14,8 @@
  * either version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef _PROTOCOL_EFIBOOT_H
-#define _PROTOCOL_EFIBOOT_H
+#ifndef EFI_PROTOCOL_RISCV_EFIBOOT_H_
+#define EFI_PROTOCOL_RISCV_EFIBOOT_H_
 
 #define RISCV_EFI_BOOT_PROTOCOL_GUID \
     { 0xccd15fec, 0x6f73, 0x4eec, \

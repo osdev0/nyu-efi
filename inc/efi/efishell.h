@@ -9,8 +9,8 @@
   Ported to gnu-efi by Jiaqing Zhao <jiaqing.zhao@intel.com>
 **/
 
-#ifndef _EFI_SHELL_H
-#define _EFI_SHELL_H
+#ifndef EFI_EFISHELL_H_
+#define EFI_EFISHELL_H_
 
 #include "efilink.h"
 

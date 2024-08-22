@@ -1,5 +1,5 @@
-#ifndef _EFI_CONEX_H
-#define _EFI_CONEX_H
+#ifndef EFI_EFICONEX_H_
+#define EFI_EFICONEX_H_
 
 /*++
 

@@ -1,5 +1,5 @@
-#ifndef _PCI22_H
-#define _PCI22_H
+#ifndef EFI_PCI22_H_
+#define EFI_PCI22_H_
 
 /*++
 

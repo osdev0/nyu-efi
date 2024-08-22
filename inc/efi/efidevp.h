@@ -1,5 +1,5 @@
-#ifndef _DEVPATH_H
-#define _DEVPATH_H
+#ifndef EFI_EFIDEVP_H_
+#define EFI_EFIDEVP_H_
 
 /*++
 

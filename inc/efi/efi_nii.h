@@ -1,5 +1,5 @@
-#ifndef _EFI_NII_H
-#define _EFI_NII_H
+#ifndef EFI_EFI_NII_H_
+#define EFI_EFI_NII_H_
 
 /*++
 Copyright (c) 2000  Intel Corporation

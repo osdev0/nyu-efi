@@ -1,5 +1,5 @@
-#ifndef _EFI_PXE_H
-#define _EFI_PXE_H
+#ifndef EFI_EFI_PXE_H_
+#define EFI_EFI_PXE_H_
 
 
 /*++

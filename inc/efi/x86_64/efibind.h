@@ -16,8 +16,8 @@ Abstract:
 Revision History
 
 --*/
-#ifndef X86_64_EFI_BIND
-#define X86_64_EFI_BIND
+#ifndef EFI_X86_64_EFIBIND_H_
+#define EFI_X86_64_EFIBIND_H_
 
 #include <stdint.h>
 

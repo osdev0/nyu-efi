@@ -1,5 +1,5 @@
-#ifndef _PIFLASH64_H
-#define _PIFLASH64_H
+#ifndef EFI_PROTOCOL_PIFLASH64_H_
+#define EFI_PROTOCOL_PIFLASH64_H_
 
 /*++
 

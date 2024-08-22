@@ -1,5 +1,5 @@
-#ifndef _EFI_TCP_H
-#define _EFI_TCP_H
+#ifndef EFI_EFITCP_H_
+#define EFI_EFITCP_H_
 
 /*++
 Copyright (c) 2013  Intel Corporation

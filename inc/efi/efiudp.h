@@ -1,5 +1,5 @@
-#ifndef _EFI_UDP_H
-#define _EFI_UDP_H
+#ifndef EFI_EFIUDP_H_
+#define EFI_EFIUDP_H_
 
 
 /*++

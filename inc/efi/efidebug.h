@@ -1,5 +1,5 @@
-#ifndef _EFI_DEBUG_H
-#define _EFI_DEBUG_H
+#ifndef EFI_EFIDEBUG_H_
+#define EFI_EFIDEBUG_H_
 
 /*++
 
