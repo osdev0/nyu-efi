@@ -35,7 +35,8 @@
 #    SUCH DAMAGE.
 #
 
-override MAKEFLAGS += -rR
+MAKEFLAGS += -rR
+.SUFFIXES:
 
 define DEFAULT_VAR =
     ifeq ($(origin $1),default)
