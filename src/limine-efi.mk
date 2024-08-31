@@ -38,26 +38,15 @@
 MAKEFLAGS += -rR
 .SUFFIXES:
 
-define DEFAULT_VAR =
-    ifeq ($(origin $1),default)
-        override $(1) := $(2)
-    endif
-    ifeq ($(origin $1),undefined)
-        override $(1) := $(2)
-    endif
-endef
+override USER_VARIABLE = $(if $(filter $(origin $(1)),default undefined),$(eval override $(1) := $(2)))
 
-override DEFAULT_CC := cc
-$(eval $(call DEFAULT_VAR,CC,$(DEFAULT_CC)))
+$(call USER_VARIABLE,CC,cc)
 
 # Target identification
-override DEFAULT_ARCH := x86_64
-$(eval $(call DEFAULT_VAR,ARCH,$(DEFAULT_ARCH)))
+$(call USER_VARIABLE,ARCH,x86_64)
 
-override DEFAULT_CFLAGS := -g -O2 -pipe
-$(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CFLAGS)))
-override DEFAULT_CPPFLAGS :=
-$(eval $(call DEFAULT_VAR,CFLAGS,$(DEFAULT_CPPFLAGS)))
+$(call USER_VARIABLE,CFLAGS,-g -O2 -pipe)
+$(call USER_VARIABLE,CPPFLAGS,)
 
 # Generic compilation flags
 
