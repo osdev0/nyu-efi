@@ -113,10 +113,10 @@ override OBJS := crt0-efi-$(ARCH).S.o reloc_$(ARCH).c.o
 
 all: $(OBJS)
 
-%.c.o: %.c limine-efi.mk
+%.c.o: %.c nyu-efi.mk
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-%.S.o: %.S limine-efi.mk
+%.S.o: %.S nyu-efi.mk
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:

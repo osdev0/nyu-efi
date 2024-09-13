@@ -1,12 +1,9 @@
-limine-efi
-==========
+Nyu-EFI
+=======
 
-limine-efi is a fork of GNU-EFI that strips out all code save for
-the relocation stubs and the EFI header files.
-
-Additionally, it ships, in the "inc" directory, the ELF headers necessary
-for the relocation code to build, along with a rework of said relocation
-code and linker scripts.
+Nyu-EFI is a fork of GNU-EFI that strips out all code save for
+the relocation stubs and the EFI header files, along with a rework
+and fixage of said relocation code, linker scripts, and build system.
 
 For an example on how to use this, see:
-https://github.com/limine-bootloader/limine-efi-c-template
+https://github.com/osdev0/nyu-efi-c-template
