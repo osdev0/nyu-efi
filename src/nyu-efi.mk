@@ -38,15 +38,13 @@
 MAKEFLAGS += -rR
 .SUFFIXES:
 
-override USER_VARIABLE = $(if $(filter $(origin $(1)),default undefined),$(eval override $(1) := $(2)))
-
-$(call USER_VARIABLE,CC,cc)
+CC := cc
 
 # Target identification
-$(call USER_VARIABLE,ARCH,x86_64)
+ARCH := x86_64
 
-$(call USER_VARIABLE,CFLAGS,-g -O2 -pipe)
-$(call USER_VARIABLE,CPPFLAGS,)
+CFLAGS := -g -O2 -pipe
+CPPFLAGS :=
 
 # Generic compilation flags
 
