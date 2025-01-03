@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2021 Loongson Technology Corporation Limited. <zhoumingtao@loongson.cn>
  * Copyright (C) 2014 Linaro Ltd. <ard.biesheuvel@linaro.org>
- * Copyright (C) 2022-2024 mintsuki
+ * Copyright (C) 2022-2025 mintsuki
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

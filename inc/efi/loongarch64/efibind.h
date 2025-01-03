@@ -5,7 +5,7 @@
  * Author: Heiher <r@hev.cc>
  * Copyright (C) 2021 Loongson Technology Corporation Limited.
  * Author: zhoumingtao <zhoumingtao@loongson.cn>
- * Copyright (C) 2024 mintsuki and contributors
+ * Copyright (C) 2025 mintsuki and contributors
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

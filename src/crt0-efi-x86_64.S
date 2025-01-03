@@ -3,7 +3,7 @@
 	Contributed by David Mosberger <davidm@hpl.hp.com>.
    Copyright (C) 2005 Intel Co.
 	Contributed by Fenghua Yu <fenghua.yu@intel.com>.
-   Copyright (C) 2022-2024 mintsuki
+   Copyright (C) 2022-2025 mintsuki
 
     All rights reserved.
 
