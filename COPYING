@@ -6,6 +6,9 @@ A quick summary of the licenses used in this project is as follows:
 - BSD-Axis without modification (https://scancode-licensedb.aboutcode.org/bsd-axis-nomod.html)
 - MIT
 
+Some files are dual-licensed under one of the above licenses and the
+GNU General Public License version 2 or later.
+
 More in depth information and license text follows:
 
 All code inside the "src" directory is licensed under the conditions
