@@ -1,4 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0+ OR BSD-2-Clause */
 /*
  * Copyright (C) 2014 - 2015 Linaro Ltd.
  * Author: Ard Biesheuvel <ard.biesheuvel@linaro.org>
