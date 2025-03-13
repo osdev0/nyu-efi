@@ -3,8 +3,15 @@ A quick summary of the licenses used in this project is as follows:
 - BSD-2-Clause
 - BSD-2-Clause-Patent
 - BSD-3-Clause
-- BSD-2-Clause no disclaimer Unmod (https://scancode-licensedb.aboutcode.org/bsd-no-disclaimer-unmodified.html)
+- LicenseRef-scancode-bsd-no-disclaimer-unmodified
 - MIT
+
+For more information about the
+LicenseRef-scancode-bsd-no-disclaimer-unmodified license used by parts
+of the project, see
+https://scancode-licensedb.aboutcode.org/bsd-no-disclaimer-unmodified.html
+and the LicenseRef file at
+LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt.
 
 Some files are dual-licensed under one of the above licenses and the
 GNU General Public License version 2 or later.
