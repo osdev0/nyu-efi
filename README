@@ -6,4 +6,4 @@ the relocation stubs and the EFI header files, along with a rework
 and fixage of said relocation code, linker scripts, and build system.
 
 For an example on how to use this, see:
-https://github.com/osdev0/nyu-efi-c-template
+https://codeberg.org/osdev/nyu-efi-c-template
