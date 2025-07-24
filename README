@@ -3,7 +3,7 @@ Nyu-EFI
 
 Nyu-EFI is a fork of GNU-EFI that strips out all code save for
 the relocation stubs and the EFI header files, along with a rework
-and fixage of said relocation code, linker scripts, and build system.
+and fixage of said relocation stubs, and providing new linker scripts.
 
 For an example on how to use this, see:
 https://codeberg.org/osdev/nyu-efi-c-template
