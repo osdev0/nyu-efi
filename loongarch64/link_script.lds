@@ -68,6 +68,9 @@ SECTIONS
 
     .data : {
         *(.data .data.*)
+    } :data
+
+    .bss : {
         *(.bss .bss.*)
         *(COMMON)
     } :data
