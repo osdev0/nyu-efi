@@ -64,6 +64,8 @@ SECTIONS
 
         __data_start = ABSOLUTE(.);
         *(.rodata .rodata.*)
+        *(.srodata .srodata.*)
+        *(.sdata2 .sdata2.*)
     } :rodata
 
     .data : {
@@ -72,8 +74,8 @@ SECTIONS
     } :data
 
     .bss : {
-        *(.sbss .sbss.*)
         *(.bss .bss.*)
+        *(.sbss .sbss.*)
         *(COMMON)
     } :data
 
