@@ -1,9 +1,10 @@
-Nyu-EFI
+PicoEFI
 =======
 
-Nyu-EFI is a fork of GNU-EFI that strips out all code save for
-the relocation stubs and the EFI header files, along with a rework
-and fixage of said relocation stubs, and providing new linker scripts.
+PicoEFI is a minimal build environment for EFI applications, originally forked
+from GNU-EFI, that strips out all library code save for the relocation stubs
+and the EFI header files. It also features a rework and fixage of said
+relocation stubs, and provides updated linker scripts.
 
 For an example on how to use this, see:
-https://codeberg.org/osdev/nyu-efi-c-template
+https://github.com/PicoEFI/picoefi-c-template
