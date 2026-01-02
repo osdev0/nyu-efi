@@ -2,7 +2,7 @@
    Copyright (C) 2014 Linaro Ltd. <ard.biesheuvel@linaro.org>
    Copyright (C) 1999 Hewlett-Packard Co.
 	Contributed by David Mosberger <davidm@hpl.hp.com>.
-   Copyright (C) 2022-2025 mintsuki
+   Copyright (C) 2022-2026 Mintsuki and contributors.
 
     All rights reserved.
 

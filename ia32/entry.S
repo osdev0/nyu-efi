@@ -1,7 +1,7 @@
 /* crt0-efi-ia32.S - x86 EFI startup code.
    Copyright (C) 1999 Hewlett-Packard Co.
 	Contributed by David Mosberger <davidm@hpl.hp.com>.
-   Copyright (C) 2022-2025 mintsuki
+   Copyright (C) 2022-2026 Mintsuki and contributors.
 
     All rights reserved.
 
