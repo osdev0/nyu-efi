@@ -7,4 +7,4 @@ and the EFI header files. It also features a rework and fixage of said
 relocation stubs, and provides updated linker scripts.
 
 For an example on how to use this, see:
-https://codeberg.org/PicoEFI/picoefi-c-template
+https://github.com/PicoEFI/picoefi-c-template
