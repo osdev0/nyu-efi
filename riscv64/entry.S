@@ -50,8 +50,8 @@
     .byte 0x02         // maj linker ver
     .byte 0x26         // min linker ver
     .long __text_size - fbase // code size
-    .long __data_size - fbase // data size
-    .long 0            // uninitialised data size
+    .long __data_rawsize - fbase // data size
+    .long __bss_size - fbase // uninitialised data size
     .long _start - fbase // entry point
     .long __text_start - fbase // code base
     .quad __image_base - fbase // image base
@@ -123,7 +123,7 @@
     .ascii ".data\0\0\0" // name
     .long __data_size - fbase // virtual size
     .long __data_start - fbase // rva
-    .long __data_size - fbase // file size
+    .long __data_rawsize - fbase // file size
     .long __data_start - fbase // file location
     .long 0              // relocs
     .long 0              // line nums
@@ -141,6 +141,15 @@
     sd a0, 0(sp)
     sd a1, 8(sp)
     sd ra, 16(sp)
+
+    // Not all loaders zero the gap between SizeOfRawData and VirtualSize.
+    lla t0, __bss_start
+    lla t1, __bss_end
+8:  bgeu t0, t1, 9f
+    sb zero, 0(t0)
+    addi t0, t0, 1
+    j 8b
+9:
     lla a0, __image_base
     lla a1, _DYNAMIC
     call __relocate

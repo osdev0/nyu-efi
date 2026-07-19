@@ -50,8 +50,8 @@
     .byte 0x02         // maj linker ver
     .byte 0x26         // min linker ver
     .long __text_size - fbase // code size
-    .long __data_size - fbase // data size
-    .long 0            // uninitialised data size
+    .long __data_rawsize - fbase // data size
+    .long __bss_size - fbase // uninitialised data size
     .long _start - fbase // entry point
     .long __text_start - fbase // code base
     .quad __image_base - fbase // image base
@@ -123,7 +123,7 @@
     .ascii ".data\0\0\0" // name
     .long __data_size - fbase // virtual size
     .long __data_start - fbase // rva
-    .long __data_size - fbase // file size
+    .long __data_rawsize - fbase // file size
     .long __data_start - fbase // file location
     .long 0              // relocs
     .long 0              // line nums
@@ -140,6 +140,15 @@ _start:
     st.d $ra, $sp, 0
     st.d $a0, $sp, 8
     st.d $a1, $sp, 16
+
+    // Not all loaders zero the gap between SizeOfRawData and VirtualSize.
+    la.local $t0, __bss_start
+    la.local $t1, __bss_end
+8:  bgeu $t0, $t1, 9f
+    st.b $zero, $t0, 0
+    addi.d $t0, $t0, 1
+    b 8b
+9:
 
     move $a2, $a0
     move $a3, $a1

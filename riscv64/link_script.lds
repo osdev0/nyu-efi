@@ -68,20 +68,28 @@ SECTIONS
         *(.sdata2 .sdata2.*)
     } :rodata
 
+    .dynamic : {
+        *(.dynamic)
+    } :data :dynamic
+
     .data : {
         *(.data .data.*)
         *(.sdata .sdata.*)
     } :data
 
+    /* .bss must come last: nothing with file contents may follow it. */
+    __data_rawend = ABSOLUTE(ALIGN(0x1000));
+    __data_rawsize = ABSOLUTE(__data_rawend - __data_start);
+
     .bss : {
+        __bss_start = ABSOLUTE(.);
         *(.bss .bss.*)
         *(.sbss .sbss.*)
         *(COMMON)
     } :data
 
-    .dynamic : {
-        *(.dynamic)
-    } :data :dynamic
+    __bss_end = ABSOLUTE(ALIGN(0x1000));
+    __bss_size = ABSOLUTE(__bss_end - __bss_start);
 
     __data_end = ABSOLUTE(ALIGN(0x1000));
     __data_size = ABSOLUTE(__data_end - __data_start);
