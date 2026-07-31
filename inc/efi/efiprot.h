@@ -1491,6 +1491,9 @@ typedef struct _EFI_EBC_PROTOCOL {
   EFI_EBC_GET_VERSION           GetVersion;
 } EFI_EBC_PROTOCOL;
 
+#define EFI_MEMORY_ATTRIBUTE_PROTOCOL_GUID             \
+     {0xf4560cf6, 0x40ec, 0x4b4a, {0xa1, 0x92, 0xbf, 0x1d, 0x57, 0xd0, 0xb1, 0x89} }
+
 INTERFACE_DECL(_EFI_MEMORY_ATTRIBUTE_PROTOCOL);
 
 typedef
